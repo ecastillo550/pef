@@ -21,44 +21,10 @@
 	<script type="text/javascript" src="/js/picker.date.js"></script>
 	<script type="text/javascript" src="/js/picker.time.js"></script>
 	<script type="text/javascript" src="/js/materialize.min.js"></script>
+	<script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
     <script type="text/javascript">
 	$(document).ready(function () {
-	    var navListItems = $('div.setup-panel div a'),
-	            allWells = $('.setup-content'),
-	            allNextBtn = $('.nextBtn');
-	    allWells.hide();
-	    navListItems.click(function (e) {
-	        e.preventDefault();
-	        var $target = $($(this).attr('href')),
-	                $item = $(this);
-	        if (!$item.hasClass('disabled')) {
-	            navListItems.removeClass('btn-info').addClass('btn-default');
-	            $item.addClass('btn-info');
-	            allWells.hide();
-	            $target.show();
-	            $target.find('input:eq(0)').focus();
-	        }
-	    });
-	    allNextBtn.click(function(){
-	        var curStep = $(this).closest(".setup-content"),
-	            curStepBtn = curStep.attr("id"),
-	            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
-	            curInputs = curStep.find("input[type='text'],input[type='url']"),
-	            isValid = true;
-	        $(".form-group").removeClass("has-error");
-	        if (isValid)
-	            nextStepWizard.removeAttr('disabled').trigger('click');
-	    });
-	    $('div.setup-panel div a.btn-info').trigger('click');
-        $('#checkboxdisposicion').change(function () {
-            if ($(this).prop('checked') === true) {
-                $('#cualesgroup').show();
-                $('input[name=cuales').prop('required',true);
-            } else {
-                $('#cualesgroup').hide();
-                $('input[name=cuales').prop('required',false);
-            }
-        });
+
 	});
 </script>
 
@@ -103,72 +69,59 @@
 		<iframe src="http://free.timeanddate.com/clock/i4tc10mo/n162/tlmx4/fn14/fs18/ahr/ftb/pa10/tt0/tw1/tm3/tb4" frameborder="0" width="183" height="64"></iframe>
 	</div>
 </div>
-
-
-
- 	<!-- Esto se llama en todos lados por eso lo puse afuera -->
-	<br><br>
-
-	          <div id="main-sidebar" class="main-sidebar main-sidebar-left">
-
-	              <div id="main-sidebar-wrapper" class="main-sidebar-wrapper">
-	<!-- Hasta aqui termina "esto" -->
-	<?php if($this->auth->isAuth()) :
+<div id="main-sidebar" class="main-sidebar main-sidebar-left">
+	<div id="main-sidebar-wrapper" class="main-sidebar-wrapper">
+		<!-- Hasta aqui termina "esto" -->
+		<?php if($this->auth->isAuth()) :
 		$obj= $this->user->getUserObject();
-			if ($this->user->getUserType() == 'Doctor'): ?>
-         <div class="section">
-                      <img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-                      <p class="nombre-sidebar"> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-                  </div>
-  		<?php elseif ($this->user->getUserType() == 'Administrador'): ?>
-                  <div class="section">
-                      <img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-                      <p class="nombre-sidebar"> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-                  </div>
-                  <nav>
-                      <ul>
-                          <li class="lista-sidebar"><a href="/Admin/index" class="lista-sidebar">Inicio</a></li>
-
-                          <li class="lista-sidebar"><a href="/Admin/users" class="lista-sidebar">Gesti&oacute;n de usuarios</a></li>
-                          <li class="lista-sidebar"><a href="/Admin/cliente" class="lista-sidebar">Gesti&oacute;n de clientes</a></li>
-
-                          <li class="lista-sidebar"><a href="#" class="lista-sidebar">Reporte de Clientes</a></li>
-
-                          <li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
-                       </ul>
-                  </nav>
-  		<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
-                  <div class="section">
-                      <img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-                      <p class="nombre-sidebar"> Empresa <b> <?=$this->user->getNombreCompleto()?> </b></p>
-                  </div>
-                  <nav>
-                      <ul>
-                          <li class="lista-sidebar"><a href="#" class="lista-sidebar">Inicio</a></li>
-
-                          <li class="lista-sidebar"><a href="/Cliente/solicitudIndividual" class="lista-sidebar">Dashboard</a></li>
-
-                          <li class="lista-sidebar"><a href="/Cliente/solicitudGrupal" class="lista-sidebar">Subir Datos</a></li>
-
-                          <li class="lista-sidebar"><a href="#" class="lista-sidebar">Configuracion</a></li>
-
-                          <li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
-                       </ul>
-                  </nav>
-  		<?php endif; ?>
-  		<?php elseif(!($this->auth->isAuth())) : ?>
-  				<div class="section">
-                  <nav>
-                      <ul>
-                      	<li class="lista-sidebar"><a href="/User">Login</a></li>
-                      </ul>
-                  </nav>
-				</div>
-		<?php endif; ?>
-			</div>
+		if ($this->user->getUserType() == 'Administrador'): ?>
+		<div class="section">
+			<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
+			<p class="nombre-sidebar"> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
 		</div>
+		<nav>
+			<ul>
+				<li class="lista-sidebar"><a href="/Admin/index" class="lista-sidebar">Inicio</a></li>
+
+				<li class="lista-sidebar"><a href="/Admin/users" class="lista-sidebar">Gesti&oacute;n de usuarios</a></li>
+				<li class="lista-sidebar"><a href="/Admin/cliente" class="lista-sidebar">Gesti&oacute;n de clientes</a></li>
+
+				<li class="lista-sidebar"><a href="#" class="lista-sidebar">Reporte de Clientes</a></li>
+
+				<li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
+			</ul>
+		</nav>
+	<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
+		<div class="section">
+			<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
+			<p class="nombre-sidebar"> Empresa <b> <?=$this->user->getNombreCompleto()?> </b></p>
+		</div>
+		<nav>
+			<ul>
+				<li class="lista-sidebar"><a href="#" class="lista-sidebar">Inicio</a></li>
+
+				<li class="lista-sidebar"><a href="/Cliente/dashboard" class="lista-sidebar">Dashboard</a></li>
+
+				<li class="lista-sidebar"><a href="/Cliente/subir" class="lista-sidebar">Subir Datos</a></li>
+
+				<li class="lista-sidebar"><a href="/Cliente/config" class="lista-sidebar">Configuracion</a></li>
+
+				<li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
+			</ul>
+		</nav>
+	<?php endif; ?>
+<?php elseif(!($this->auth->isAuth())) : ?>
+	<div class="section">
+		<nav>
+			<ul>
+				<li class="lista-sidebar"><a href="/User">Login</a></li>
+			</ul>
+		</nav>
+	</div>
+<?php endif; ?>
+</div>
+</div>
  	<?php echo $this->view; ?>
- 	<br><br>
  	</div>
 		<footer class="page-footer  blue-grey darken-2">
           <div class="footer-copyright">

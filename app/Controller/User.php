@@ -14,6 +14,14 @@ class User extends AbstractController{
 			$this->auth->authenticate($_POST['user'], $_POST['password']);
 			if ($this->auth->isAuth()) {
 				$this->user = new \Hagane\Model\User($this->auth, $this->db);
+				if ($this->user->getUserType() == 'Administrador') {
+					header("Location: /Admin/index");
+					die();
+				}
+				if ($this->user->getUserType() == 'Cliente') {
+					header("Location: /Cliente/index");
+					die();
+				}
 			}
 		}
 	}
