@@ -1,29 +1,33 @@
 <?php if ($this->auth->isAuth()) : ?>
 
 	<?php if ($this->user->getUserType() == 'Doctor'): ?>
-	Usuario autenticado - Bienvenido: Doctor <?=$this->user->getNombreCompleto()?> 
+	Usuario autenticado - Bienvenido: Doctor <?=$this->user->getNombreCompleto()?>
 	<?php endif; ?>
 
 	<?php if ($this->user->getUserType() == 'Cliente'): ?>
-	Usuario autenticado - Bienvenido: <?=$this->user->getUserObject()->getResponsable()?> 
-	<br> Empresa: <?=$this->user->getUserObject()->getEmpresa()?> 
+	Usuario autenticado - Bienvenido: <?=$this->user->getUserObject()->getResponsable()?>
+	<br> Empresa: <?=$this->user->getUserObject()->getEmpresa()?>
 	<?php endif; ?>
 
 	<?php if ($this->user->getUserType() == 'Administrador'): ?>
-	Usuario autenticado - Bienvenido: Administrador <?=$this->user->getNombreCompleto()?> 
+	Usuario autenticado - Bienvenido: Administrador <?=$this->user->getNombreCompleto()?>
 	<?php endif; ?>
 
 
 <br>**Se redirigira a su panel
 <?php else: ?>
- <div class="row white">
-      <div class="col s12 offset-m3 m6">
-      Usuario y/o Contraseña inválidos<br>
-            <form action="/User/auth" method="post">
-                  <input name="user" type="text" placeholder="User">
-                  <input name="password" type="password" placeholder="Password">
-                  <button class="btn waves-effect waves-teal orange" type="submit">Login</button>
-            </form>
-      </div>
-</div>
+<md-subheader class="md-warn">Usuario y/o Contraseña inválidos</md-subheader>
+<form action="/User/auth" method="post">
+	<md-input-container >
+		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+		<input name="user" type="text" placeholder="User" ng-required="true">
+	</md-input-container>
+	<md-input-container >
+		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+		<input name="password" type="password" placeholder="Password" ng-required="true">
+	</md-input-container>
+	<md-input-container >
+		<md-button type="submit">Entrar</md-button>
+	</md-input-container>
+</form>
 <?php endif; ?>

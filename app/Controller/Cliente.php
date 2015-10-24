@@ -5,7 +5,7 @@ class Cliente extends AbstractController{
 
 	function _init() {
 		if (!$this->auth->isAuth()) {
-			 header("Location: http://hagasoft.mx/User");
+			 header("Location: /User");
 			 die();
 		}
 	}

@@ -1,164 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="haganeApp">
 <head>
 	<meta charset="UTF-8">
-	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
-	<link type="text/css" rel="stylesheet" href="/css/default.css"	media="screen,projection" />
-	<link type="text/css" rel="stylesheet" href="/css/default.date.css"	media="screen,projection" />
-	<link type="text/css" rel="stylesheet" href="/css/default.time.css"	media="screen,projection" />
 	<link type="text/css" rel="stylesheet" href="/css/style.css"	media="screen,projection" />
+
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 
-	<title>PEF Alpha</title>
-	<!--Let browser know website is optimized for mobile-->
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+
+	<title>Biin Solutions</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	<!--Import jQuery before materialize.js-->
-	<!--<script type="text/javascript" src="/js/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script> -->
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	<script type="text/javascript" src="/js/picker.js"></script>
-	<script type="text/javascript" src="/js/picker.date.js"></script>
-	<script type="text/javascript" src="/js/picker.time.js"></script>
-	<script type="text/javascript" src="/js/materialize.min.js"></script>
-	<script type="text/javascript" src="/js/jscolor/jscolor.js"></script>
-    <script type="text/javascript">
-	$(document).ready(function () {
-
-	});
-</script>
-
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-animate.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-aria.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0-rc1/angular-material.min.js"></script>
+	<script type="text/javascript" src="/js/angular/haganeApp.js"></script>
+	<script type="text/javascript" src="/js/angular/appConfig.js"></script>
+	<script type="text/javascript" src="/js/angular/appMainController.js"></script>
 </head>
-
-<body>
-<div class="sitecontent">
-<div class="navbar-fixed">
-	<nav class="blue-grey darken-2">
-		<div class="nav-wrapper">
-			<div id="main-navbar" class="main-navbar main-navbar-fixed-top">
-	              <div class="main-navbar-content">
-	                  	<div id="toggle-sidebar" class="icon left logo-sidebar">
-	                    	<i class="fa fa-bars"></i>
-	                  	</div>
-	              </div>
-	        </div>
-			<a href="/" class="brand-logo center">PEF</span></a>
-
-			<ul id="nav-mobile" class="right hide-on-med-and-down">
-				<?php if($this->auth->isAuth()) : ?>
-					<li><a href="/User/logout">Logout: <?=$this->user->getUsername();?></a></li>
-				<?php else : ?>
-					<li><a href="/User">Login</a></li>
+<body ng-controller="mainController">
+<style>
+.md-button {
+	margin: 0;
+}
+</style>
+<section layout="row" flex>
+	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+		<md-toolbar class="md-primary">
+			<h1 class="md-toolbar-tools">Biin Solutions</h1>
+		</md-toolbar>
+		<md-content layout-padding ng-controller="LeftCtrl">
+		<md-list>
+				<?php if($this->auth->isAuth()) :
+				$obj= $this->user->getUserObject();
+				if ($this->user->getUserType() == 'Administrador'): ?>
+					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
+					<p> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
+						<md-list-item ng-href="/Admin/index">Inicio</md-list-item>
+						<md-list-item ng-href="/Admin/users">Gesti&oacute;n de usuarios</md-list-item>
+						<md-list-item ng-href="/Admin/cliente">Clientes</md-list-item>
+						<md-list-item ng-href="#">Reporte de Clientes</md-list-item>
+						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
+				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
+					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
+						<?=$this->user->getUserObject()->getEmpresa()?>
+						<br><b> <?=$this->user->getNombreCompleto()?> </b>
+						<md-list-item ng-href="/Cliente/">Inicio</md-list-item>
+						<md-list-item ng-href="/Cliente/dashboard">Dashboard</md-list-item>
+						<md-list-item ng-href="/Cliente/subir">Subir info</md-list-item>
+						<md-list-item ng-href="/Cliente/config">Configuración</md-list-item>
+						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
 				<?php endif; ?>
-			</ul>
-			<ul class="side-nav" id="mobile-demo">
-		        <?php if($this->auth->isAuth()) : ?>
-					<li><a href="/User/logout">Logout: <?=$this->user->getUsername();?></a></li>
 				<?php else : ?>
-					<li><a href="/User">Login</a></li>
+						<md-list-item ng-href="/User" class="md-primary">Login</md-list-item>
 				<?php endif; ?>
-		     </ul>
+			</md-list>
+		</md-content>
+	</md-sidenav>
+
+<section layout="column" flex>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<md-button ng-click="toggleLeft()" hide-gt-md class="md-icon-button">
+				<md-icon md-font-set="material-icons">menu</md-icon>
+			</md-button>
+			<h2>Business Intelligence</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" aria-label="Contextual" ng-click="toggleRight()" ng-hide="isOpenRight()">
+				<md-icon md-font-set="material-icons">more_vert</md-icon>
+			</md-button>
 		</div>
-	</nav>
-</div>
+	</md-toolbar>
 
 
+	<md-content flex style="padding: 15px;">
+		<?php echo $this->view; ?>
+	</md-content>
 
-<div class="row">
-	<div class="right-align">
-		<iframe src="http://free.timeanddate.com/clock/i4tc10mo/n162/tlmx4/fn14/fs18/ahr/ftb/pa10/tt0/tw1/tm3/tb4" frameborder="0" width="183" height="64"></iframe>
-	</div>
-</div>
-<div id="main-sidebar" class="main-sidebar main-sidebar-left">
-	<div id="main-sidebar-wrapper" class="main-sidebar-wrapper">
-		<!-- Hasta aqui termina "esto" -->
-		<?php if($this->auth->isAuth()) :
-		$obj= $this->user->getUserObject();
-		if ($this->user->getUserType() == 'Administrador'): ?>
-		<div class="section">
-			<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-			<p class="nombre-sidebar"> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-		</div>
-		<nav>
-			<ul>
-				<li class="lista-sidebar"><a href="/Admin/index" class="lista-sidebar">Inicio</a></li>
 
-				<li class="lista-sidebar"><a href="/Admin/users" class="lista-sidebar">Gesti&oacute;n de usuarios</a></li>
-				<li class="lista-sidebar"><a href="/Admin/cliente" class="lista-sidebar">Gesti&oacute;n de clientes</a></li>
-
-				<li class="lista-sidebar"><a href="#" class="lista-sidebar">Reporte de Clientes</a></li>
-
-				<li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
-			</ul>
-		</nav>
-	<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
-		<div class="section">
-			<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-			<p class="nombre-sidebar"> Empresa <b> <?=$this->user->getNombreCompleto()?> </b></p>
-		</div>
-		<nav>
-			<ul>
-				<li class="lista-sidebar"><a href="#" class="lista-sidebar">Inicio</a></li>
-
-				<li class="lista-sidebar"><a href="/Cliente/dashboard" class="lista-sidebar">Dashboard</a></li>
-
-				<li class="lista-sidebar"><a href="/Cliente/subir" class="lista-sidebar">Subir Datos</a></li>
-
-				<li class="lista-sidebar"><a href="/Cliente/config" class="lista-sidebar">Configuracion</a></li>
-
-				<li class="lista-sidebar"><a href="/User/logout" class="boton-logout">Cerrar Sesion</a></li>
-			</ul>
-		</nav>
-	<?php endif; ?>
-<?php elseif(!($this->auth->isAuth())) : ?>
-	<div class="section">
-		<nav>
-			<ul>
-				<li class="lista-sidebar"><a href="/User">Login</a></li>
-			</ul>
-		</nav>
-	</div>
-<?php endif; ?>
-</div>
-</div>
- 	<?php echo $this->view; ?>
- 	</div>
-		<footer class="page-footer  blue-grey darken-2">
-          <div class="footer-copyright">
-            <div class="container">
-            © 2015 Copyright
-            </div>
-          </div>
-        </footer>
-<script src="/js/simpler-sidebar-1.3.4/dist/jquery.simpler-sidebar.min.js"></script>
-<script>
-            $(document).ready(function() {
-                $('#main-sidebar').simplerSidebar({
-                    opener: '#toggle-sidebar',
-                    animation: {
-                        easing: "easeOutExpo"
-                    },
-                    sidebar: {
-                        align: 'left',
-                        width: 360,
-                        backgroundColor: 'black',
-                        closingLinks: '.close-sb'
-
-                    }
-
-                });
-
-            });
-</script>
-<script type="text/javascript">
-$(document).ready(function(){
-	$('.scrollspy').scrollSpy();
-	$('.button-collapse').sideNav({
-      menuWidth: 300, // Default is 240
-      closeOnClick: true // Closes side-nav on <a> clicks, useful for Angular/Meteor
-    }
-  );
-});
-</script>
+</section>
+	<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
+		<md-toolbar class="md-accent">
+			<h1 class="md-toolbar-tools">Menu contextual</h1>
+		</md-toolbar>
+		<md-content ng-controller="RightCtrl" layout-padding>
+			<form>
+				<md-input-container>
+					<label for="testInput">Test input</label>
+					<input type="text" id="testInput" ng-model="data" md-autofocus>
+				</md-input-container>
+			</form>
+			<md-button ng-click="close()" class="md-primary">
+				Close Sidenav Right
+			</md-button>
+		</md-content>
+	</md-sidenav>
+</section>
 </body>
 </html>
