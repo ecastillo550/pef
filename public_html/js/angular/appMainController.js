@@ -7,6 +7,10 @@ app.controller('mainController', function ($scope, $timeout, $mdSidenav, $log, $
 	$scope.go = function ( path ) {
 		$location.path( path );
 	};
+
+	$scope.loading = true;
+
+
 	/**
 	* Supplies a function that will continue to operate until the
 	* time is up.

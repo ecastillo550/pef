@@ -47,17 +47,10 @@ class UserManagement {
 		return $empresas;
 	}
 
-	function setResponsable($username, $password, $nombre, $ap, $am, $empresa) {
-		$data = array('user' => $username,
-					'user_type' => 'Cliente',
-					'password' => $password);
+	function setResponsable($data) {
 		$lastid = $this->db->insert('INSERT INTO User SET user=:user, password=:password, user_type=:user_type ', $data);
 
-		$data = array('nombre' => $nombre,
-					'apellido_paterno' => $ap,
-					'apellido_materno' => $am,
-					'idCliente' => $empresa,
-					'idUser' => $lastid);
+		$data['idUser'] = $lastid;
 		$this->db->insert('INSERT INTO Responsable SET nombre=:nombre, apellido_paterno=:apellido_paterno, apellido_materno=:apellido_materno, idCliente=:idCliente, idUser=:idUser ', $data);
 	}
 

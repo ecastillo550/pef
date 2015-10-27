@@ -1,110 +1,43 @@
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.modal-trigger').leanModal();
-	});
-</script>
-<div class="row">
-	<div class="col s12">
-		<ul class="tabs">
-		<li class="tab col s3"><a class="<?=$this->clientes?>" href="#clientes">clientes</a></li>
-		<li class="tab col s3"><a class="<?=$this->admin?>" href="#admin">admin</a></li>
-		</ul>
-	</div>
-	<div id="clientes" class="col s12">
-		<table class="striped">
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>Tipo</th>
-					<th>Nombre</th>
-					<th>apellido paterno</th>
-					<th>apellido materno</th>
-					<th>empresa</th>
-				</tr>
-			</thead>
-
-			<tbody>
-			<?php foreach ($this->userManager->getClientUsers() as $user) : ?>
-				<tr>
-					<td><?=$user['user']?></td>
-					<td><?=$user['user_type']?></td>
-					<td><?=$user['nombre']?></td>
-					<td><?=$user['apellido_paterno']?></td>
-					<td><?=$user['apellido_materno']?></td>
-					<td><?=$user['empresa']?></td>
-				</tr>
-			<?php endforeach; ?>
-			</tbody>
-		</table>
-		<a class="waves-effect waves-light btn modal-trigger" href="#addCliente">Agregar Cliente</a>
-
-		<div id="addCliente" class="modal">
-			<form action="/Admin/users" method="post">
-				<div class="modal-content">
-					<h4>Cliente</h4>
-						<input type="hidden" name="tipo" value="cliente">
-						<input type="text" name="username" placeholder="username">
-						<input type="password" name="password" placeholder="password">
-						<input type="text" name="nombre" placeholder="nombre">
-						<input type="text" name="apellido_paterno" placeholder="apellido_paterno">
-						<input type="text" name="apellido_materno" placeholder="apellido_materno">
-						<select class="browser-default" name="empresa">
-							<?php foreach ($this->userManager->getEmpresas() as $empresa) : ?>
-								<option value="<?=$empresa['id']?>"><?=$empresa['nombre']?></option>
-							<?php endforeach; ?>
-						</select>
-				</div>
-				<div class="modal-footer">
-					<button class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</button>
-				</div>
-			</form>
-		</div>
-
-	</div>
-	<div id="admin" class="col s12">
-		<table class="striped">
-			<thead>
-				<tr>
-					<th>Username</th>
-					<th>Tipo</th>
-					<th>Nombre</th>
-					<th>apellido paterno</th>
-					<th>apellido materno</th>
-				</tr>
-			</thead>
-
-			<tbody>
-			<?php foreach ($this->userManager->getAdminUsers() as $user) : ?>
-				<tr>
-					<td><?=$user['user']?></td>
-					<td><?=$user['user_type']?></td>
-					<td><?=$user['nombre']?></td>
-					<td><?=$user['apellido_paterno']?></td>
-					<td><?=$user['apellido_materno']?></td>
-				</tr>
-			<?php endforeach; ?>
-			</tbody>
-		</table>
-		<a class="waves-effect waves-light btn modal-trigger" href="#addAdministrador">Agregar Administrador</a>
-
-		<div id="addAdministrador" class="modal">
-			<form action="/Admin/users" method="post">
-				<div class="modal-content">
-					<h4>Administrador</h4>
-						<input type="hidden" name="tipo" value="admin">
-						<input type="text" name="username" placeholder="username">
-						<input type="password" name="password" placeholder="password">
-						<input type="text" name="nombre" placeholder="nombre">
-						<input type="text" name="apellido_paterno" placeholder="apellido_paterno">
-						<input type="text" name="apellido_materno" placeholder="apellido_materno">
-				</div>
-				<div class="modal-footer">
-					<button class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</button>
-				</div>
-			</form>
-		</div>
-	</div>
+<style>
+.slider {
+	width: 100%;
+}
+</style>
+<section layout="row" flex ng-controller="AdminController">
+<div ng-cloak class="slider">
+	<md-content>
+		<md-tabs md-dynamic-height md-border-bottom>
+			<md-tab label="Usuarios PYME">
+				<md-content class="md-padding">
+					<h1 class="md-display-2">Usuarios PYME</h1>
+					<md-list>
+						<md-subheader class="md-no-sticky">Prueba</md-subheader>
+						<md-list-item class="md-3-line" ng-repeat="usuarioPyme in usuariosPyme">
+							<div class="md-list-usuarioPyme-text" layout="column">
+								<h3>{{ usuarioPyme.nombre }}</h3>
+								<h4>{{ usuarioPyme.apellido_paterno }}</h4>
+								<p>{{ usuarioPyme.apellido_materno }}</p>
+							</div>
+						</md-list-item>
+					</md-list>
+				</md-content>
+			</md-tab>
+		<md-tab label="Usuarios Administradores">
+			<md-content class="md-padding">
+				<h1 class="md-display-2">Usuarios Administradores</h1>
+						<md-list>
+							<md-subheader class="md-no-sticky">Prueba</md-subheader>
+							<md-list-item class="md-3-line" ng-repeat="usuarioAdmin in usuariosAdmin">
+								<div class="md-list-usuarioAdmin-text" layout="column">
+									<h3>{{ usuarioAdmin.nombre }}</h3>
+									<h4>{{ usuarioAdmin.apellido_paterno }}</h4>
+									<p>{{ usuarioAdmin.apellido_materno }}</p>
+								</div>
+							</md-list-item>
+						</md-list>
+			</md-content>
+		</md-tab>
+	</md-tabs>
+	</md-content>
 </div>
-
-
-
+</section>

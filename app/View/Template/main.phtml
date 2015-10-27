@@ -20,11 +20,17 @@
 	<script type="text/javascript" src="/js/angular/haganeApp.js"></script>
 	<script type="text/javascript" src="/js/angular/appConfig.js"></script>
 	<script type="text/javascript" src="/js/angular/appMainController.js"></script>
+	<script type="text/javascript" src="/js/angular/appAdminController.js"></script>
 </head>
 <body ng-controller="mainController">
 <style>
 .md-button {
 	margin: 0;
+}
+.loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
 }
 </style>
 <section layout="row" flex>
@@ -77,6 +83,9 @@
 
 
 	<md-content flex style="padding: 15px;">
+		<div class="loader">
+			<md-progress-circular md-mode="indeterminate" ng-model="loading"></md-progress-circular>
+		</div>
 		<?php echo $this->view; ?>
 	</md-content>
 
