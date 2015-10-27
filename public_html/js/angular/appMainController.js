@@ -8,7 +8,7 @@ app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $
 		$location.path( path );
 	};
 
-	$scope.loading = 'indeterminate';
+	$scope.loading = null;
 
 
 	/**

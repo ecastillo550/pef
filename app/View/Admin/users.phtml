@@ -1,38 +1,31 @@
-<style>
-.slider {
-	width: 100%;
-}
-</style>
-<section layout="row" flex ng-controller="AdminController">
+<section layout="row" flex ng-controller="AdminUserController">
 <div ng-cloak class="slider">
 	<md-content>
 		<md-tabs md-dynamic-height md-border-bottom>
 			<md-tab label="Usuarios PYME">
 				<md-content class="md-padding">
-					<h1 class="md-display-2">Usuarios PYME</h1>
 					<md-list>
-						<md-subheader class="md-no-sticky">Prueba</md-subheader>
 						<md-list-item class="md-3-line" ng-repeat="usuarioPyme in usuariosPyme">
 							<div class="md-list-item-text" layout="column">
 								<h3>{{ usuarioPyme.nombre }} {{ usuarioPyme.apellido_paterno }} {{ usuarioPyme.apellido_materno }}</h3>
 								<h4>{{ usuarioPyme.empresa }}</h4>
 								<p>info</p>
 							</div>
+							<md-divider ></md-divider>
 						</md-list-item>
 					</md-list>
 				</md-content>
 			</md-tab>
 		<md-tab label="Usuarios Administradores">
 			<md-content class="md-padding">
-				<h1 class="md-display-2">Usuarios Administradores</h1>
 						<md-list>
-							<md-subheader class="md-no-sticky">Prueba</md-subheader>
 							<md-list-item class="md-3-line" ng-repeat="usuarioAdmin in usuariosAdmin">
 								<div class="md-list-item-text" layout="column">
 									<h3>{{ usuarioAdmin.nombre }} {{ usuarioAdmin.apellido_paterno }} {{ usuarioAdmin.apellido_materno }}</h3>
 									<h4>Biin Solutions</h4>
 									<p>info</p>
 								</div>
+								<md-divider ></md-divider>
 							</md-list-item>
 						</md-list>
 			</md-content>

@@ -1,51 +1,17 @@
-<script type="text/javascript">
-	$(document).ready(function() {
-		$('.modal-trigger').leanModal();
-	});
-</script>
-<table class="striped">
-	<thead>
-		<tr>
-			<th>RFC</th>
-			<th>Nombre</th>
-			<th>Calle</th>
-			<th>Num Exterior</th>
-			<th>Num Interior</th>
-			<th>Colonia</th>
-			<th>Código postal</th>
-		</tr>
-	</thead>
-
-	<tbody>
-	<?php foreach ($this->userManager->getEmpresas() as $client) : ?>
-		<tr>
-			<td><?=$client['rfc']?></td>
-			<td><?=$client['nombre']?></td>
-			<td><?=$client['calle']?></td>
-			<td><?=$client['num_exterior']?></td>
-			<td><?=$client['num_interior']?></td>
-			<td><?=$client['colonia']?></td>
-			<td><?=$client['cp']?></td>
-		</tr>
-	<?php endforeach; ?>
-	</tbody>
-</table>
-<a class="waves-effect waves-light btn modal-trigger" href="#addCliente">Agregar Cliente</a>
-
-<div id="addCliente" class="modal">
-	<form action="/Admin/cliente" method="post">
-		<div class="modal-content">
-			<h4>Cliente</h4>
-				<input type="text" name="nombre" placeholder="nombre">
-				<input type="text" name="rfc" placeholder="rfc">
-				<input type="text" name="calle" placeholder="calle">
-				<input type="text" name="num_exterior" placeholder="num_exterior">
-				<input type="text" name="num_interior" placeholder="num_interior">
-				<input type="text" name="colonia" placeholder="colonia">
-				<input type="text" name="cp" placeholder="cp">
-		</div>
-		<div class="modal-footer">
-			<button class="modal-action modal-close waves-effect waves-green btn-flat">Agregar</button>
-		</div>
-	</form>
+<section layout="row" flex ng-controller="AdminClientesController">
+<div ng-cloak class="slider">
+	<md-content>
+	<h3 class="md-display-1">PYMEs</h3>
+		<md-list>
+			<md-list-item class="md-3-line" ng-repeat="cliente in clientes">
+				<div class="md-list-item-text" layout="column">
+					<h3>{{ cliente.nombre }}</h3>
+					<h4>{{ cliente.rfc }}</h4>
+					<p>{{ cliente.calle }} {{ cliente.num_exterior }} {{ cliente.num_interior }} {{ cliente.num_interior }} {{ cliente.cp }}</p>
+				</div>
+				<md-divider ></md-divider>
+			</md-list-item>
+		</md-list>
+	</md-content>
 </div>
+</section>
