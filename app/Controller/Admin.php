@@ -32,6 +32,7 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxSetCliente() {
+		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -49,6 +50,7 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxSetUsuarioResponsable() {
+		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -65,6 +67,7 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxSetUsuarioAdmin() {
+		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -82,16 +85,19 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxGetCliente() {
-		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
-		echo json_encode($this->userManager->getClientUsers());
-	}
-
-	function ajaxGetUsuarioResponsable() {
+		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 		echo json_encode($this->userManager->getEmpresas());
 	}
 
+	function ajaxGetUsuarioResponsable() {
+		$this->print_template = false;
+		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+		echo json_encode($this->userManager->getClientUsers());
+	}
+
 	function ajaxGetUsuarioAdmin() {
+		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 		echo json_encode($this->userManager->getAdminUsers());
 	}

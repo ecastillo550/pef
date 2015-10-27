@@ -13,10 +13,10 @@
 					<md-list>
 						<md-subheader class="md-no-sticky">Prueba</md-subheader>
 						<md-list-item class="md-3-line" ng-repeat="usuarioPyme in usuariosPyme">
-							<div class="md-list-usuarioPyme-text" layout="column">
-								<h3>{{ usuarioPyme.nombre }}</h3>
-								<h4>{{ usuarioPyme.apellido_paterno }}</h4>
-								<p>{{ usuarioPyme.apellido_materno }}</p>
+							<div class="md-list-item-text" layout="column">
+								<h3>{{ usuarioPyme.nombre }} {{ usuarioPyme.apellido_paterno }} {{ usuarioPyme.apellido_materno }}</h3>
+								<h4>{{ usuarioPyme.empresa }}</h4>
+								<p>info</p>
 							</div>
 						</md-list-item>
 					</md-list>
@@ -28,10 +28,10 @@
 						<md-list>
 							<md-subheader class="md-no-sticky">Prueba</md-subheader>
 							<md-list-item class="md-3-line" ng-repeat="usuarioAdmin in usuariosAdmin">
-								<div class="md-list-usuarioAdmin-text" layout="column">
-									<h3>{{ usuarioAdmin.nombre }}</h3>
-									<h4>{{ usuarioAdmin.apellido_paterno }}</h4>
-									<p>{{ usuarioAdmin.apellido_materno }}</p>
+								<div class="md-list-item-text" layout="column">
+									<h3>{{ usuarioAdmin.nombre }} {{ usuarioAdmin.apellido_paterno }} {{ usuarioAdmin.apellido_materno }}</h3>
+									<h4>Biin Solutions</h4>
+									<p>info</p>
 								</div>
 							</md-list-item>
 						</md-list>

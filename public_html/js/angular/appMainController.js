@@ -1,4 +1,4 @@
-app.controller('mainController', function ($scope, $timeout, $mdSidenav, $log, $location) {
+app.controller('MainController', function ($scope, $timeout, $mdSidenav, $log, $location) {
 	$scope.toggleLeft = buildDelayedToggler('left');
 	$scope.toggleRight = buildToggler('right');
 	$scope.isOpenRight = function(){
@@ -8,7 +8,7 @@ app.controller('mainController', function ($scope, $timeout, $mdSidenav, $log, $
 		$location.path( path );
 	};
 
-	$scope.loading = true;
+	$scope.loading = 'indeterminate';
 
 
 	/**
