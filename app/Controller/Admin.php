@@ -49,20 +49,25 @@ class Admin extends AbstractController{
 		}
 	}
 
-	function ajaxSetUsuarioResponsable() {
+	function ajaxUpdateUsuarioResponsable() {
+		$postdata = file_get_contents("php://input"); //recibe los datos de angular
+		$request = json_decode($postdata);
+
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$data = array('user' => $username,
-					'user_type' => 'Cliente',
-					'password' => $password,
-					'nombre' => $nombre,
-					'apellido_paterno' => $ap,
-					'apellido_materno' => $am,
-					'idCliente' => $empresa);
+			$data = array(
+				'id' => $request->id,
+				'idUser' => $request->idUser,
+				'user' => $request->user,
+				'user_type' => 'Cliente',
+				'nombre' => $request->nombre,
+				'apellido_paterno' => $request->apellido_paterno,
+				'apellido_materno' => $request->apellido_materno,
+				'idCliente' => $request->idCliente);
 
-			$this->userManager->setResponsable($data);
+			$this->userManager->updateResponsable($data);
 		}
 	}
 
