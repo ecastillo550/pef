@@ -55,9 +55,9 @@
 				if ($this->user->getUserType() == 'Administrador'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
 					<p> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-						<md-list-item ng-href="#/admin/index">Inicio</md-list-item>
-						<md-list-item ng-href="#/admin/users">Gesti&oacute;n de usuarios</md-list-item>
-						<md-list-item ng-href="#/admin/clientes">Clientes</md-list-item>
+						<md-list-item ng-href="#/p/index">Inicio</md-list-item>
+						<md-list-item ng-href="#/p/users">Gesti&oacute;n de usuarios</md-list-item>
+						<md-list-item ng-href="#/p/clientes">Clientes</md-list-item>
 						<md-list-item ng-href="#">Reporte de Clientes</md-list-item>
 						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
