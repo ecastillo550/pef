@@ -1,14 +1,29 @@
-<style>
-
+<section id="pagecontent" layout="row" layout-sm="column" flex ng-controller="AdminClientesController">
+<style type="text/css">
+	.tajetaConfig {
+		width: 100%;
+	}
 </style>
-<div class="row">
-	<div class="col s12">
-		<h3 class="center-align">Configuración</h2>
+<md-card class="tajetaConfig">
+	<img ng-src="{{imagePath}}" class="md-card-image">
+	<md-card-content>
+		<h2 class="md-title">Configuración de cuenta</h2>
+		<p>
+			Información de la cuenta
+		</p>
+	</md-card-content>
+	<div class="md-actions" layout="row" layout-align="end center">
+		<md-button>Modificar</md-button>
 	</div>
-</div>
-<div class="row">
-	<div class="col s12">
-	Colores de la empresa
-		<input class="color">
-	</div>
-</div>
+</md-card>
+
+<md-card class="tajetaConfig">
+	<img ng-src="{{imagePath}}" class="md-card-image">
+	<md-card-content>
+		<h2 class="md-title">Configuración de Identidad</h2>
+		<p>
+			Información de la cuenta
+		</p>
+	</md-card-content>
+</md-card>
+</section>

@@ -14,6 +14,7 @@ class Cliente extends AbstractController{
 	}
 
 	function config() {
+		$this->print_template = false;
 	}
 
 	function dashboard() {

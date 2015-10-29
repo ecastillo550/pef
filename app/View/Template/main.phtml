@@ -13,12 +13,18 @@
 	<title>Biin Solutions</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+	<script type="text/javascript">
+		var base_url = "<?php echo $_SERVER['HTTP_HOST']; ?>";
+	</script>
+
 	<script src="/js/angularlib/angular.min.js"></script>
+	<script src="/js/angularlib/angular-route.min.js"></script>
 	<script src="/js/angularlib/angular-animate.min.js"></script>
 	<script src="/js/angularlib/angular-aria.min.js"></script>
 	<script src="/js/angularlib/angular-material-1-rc1.min.js"></script>
 	<script type="text/javascript" src="/js/angular/haganeApp.js"></script>
 	<script type="text/javascript" src="/js/angular/appConfig.js"></script>
+	<script type="text/javascript" src="/js/angular/appRoutes.js"></script>
 	<script type="text/javascript" src="/js/angular/appMainController.js"></script>
 	<script type="text/javascript" src="/js/angular/appAdminController.js"></script>
 </head>
@@ -49,9 +55,9 @@
 				if ($this->user->getUserType() == 'Administrador'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
 					<p> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-						<md-list-item ng-href="/Admin/index">Inicio</md-list-item>
-						<md-list-item ng-href="/Admin/users">Gesti&oacute;n de usuarios</md-list-item>
-						<md-list-item ng-href="/Admin/cliente">Clientes</md-list-item>
+						<md-list-item ng-href="#/admin/index">Inicio</md-list-item>
+						<md-list-item ng-href="#/admin/users">Gesti&oacute;n de usuarios</md-list-item>
+						<md-list-item ng-href="#/admin/clientes">Clientes</md-list-item>
 						<md-list-item ng-href="#">Reporte de Clientes</md-list-item>
 						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>

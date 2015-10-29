@@ -19,7 +19,7 @@ class App {
 		}
 
 		include_once($config->getConf()['appPath'].'Model/UserModel.php');
-		
+
 		$router = new \Hagane\Router($config->getConf());
 		$params = $router->parse();
 

@@ -14,9 +14,16 @@ class Router {
 
 	function parse() {
 		//parseo de URI
-		$request = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
-		$request = explode("/", $request);
+		$rawRequest = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
+		$request = explode("/", $rawRequest);
+		//echo $rawRequest. '<br>';
 
+		if (isset($request[2]) && strpos($request[2], 'index.php') !== false) {
+			$request[1] = $_GET['controller'];
+			$request[2] = $_GET['action'];
+			// echo $request[1] . '<br>';
+			// echo $request[2];
+		}
 		//chequeo de existencia de controller
 		if (isset($request[1]) && $request[1] != '') {
 			if (!file_exists($this->config['appPath'].'Controller/'.$request[1].'.php')) {

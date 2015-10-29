@@ -18,6 +18,7 @@ abstract class AbstractController {
 	protected $_action;
 
 	protected $print_template;
+	protected $sendJson;
 
 	public function __construct($config = null){
 		$this->config = $config;
@@ -27,6 +28,7 @@ abstract class AbstractController {
 		$this->user = new \Hagane\Model\User($this->auth, $this->db);
 
 		$this->print_template = true;
+		$this->sendJson = false;
 		$this->_viewPath = $this->config['appPath'] . 'View/';
 		$this->template = '';
 		$this->view = '';
@@ -70,8 +72,11 @@ abstract class AbstractController {
 			$this->template = $this->render($templateFile);
 			return $this->template;
 		} else {
-			header("Content-type: application/json; charset=utf-8");
+			if ($this->sendJson) {
+				header("Content-type: application/json; charset=utf-8");
+			}
 			$this->template = $this->view;
+			return $this->template;
 		}
 	}
 

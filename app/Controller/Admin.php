@@ -9,30 +9,23 @@ class Admin extends AbstractController{
 			 die();
 		}
 		include_once($this->config['appPath'].'Model/UserManagement.php');
+		echo $this->db->database_log['error'];
 	}
 
 	function index() {
 	}
 
-	function cliente() {
-		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+	function clientes() {
+		$this->print_template = false;
+	}
+	function users() {
+		$this->print_template = false;
 
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			$data = array(
-				'nombre' => $_POST['nombre'],
-				'rfc' => $_POST['rfc'],
-				'calle' => $_POST['calle'],
-				'num_exterior' => $_POST['num_exterior'],
-				'num_interior' => $_POST['num_interior'],
-				'colonia' => $_POST['colonia'],
-				'cp' => $_POST['cp']);
-
-				$this->userManager->setCliente($data);
-		}
 	}
 
 	function ajaxSetCliente() {
 		$this->print_template = false;
+		$this->sendJson = true;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -53,6 +46,7 @@ class Admin extends AbstractController{
 		$postdata = file_get_contents("php://input"); //recibe los datos de angular
 		$request = json_decode($postdata);
 
+		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
@@ -72,6 +66,7 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxSetUsuarioAdmin() {
+		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
@@ -90,37 +85,24 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxGetCliente() {
+		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 		echo json_encode($this->userManager->getEmpresas());
 	}
 
 	function ajaxGetUsuarioResponsable() {
+		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 		echo json_encode($this->userManager->getClientUsers());
 	}
 
 	function ajaxGetUsuarioAdmin() {
+		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 		echo json_encode($this->userManager->getAdminUsers());
-	}
-
-	function users() {
-		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
-		echo $this->db->database_log['error'];
-
-		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-			if ($_POST['tipo'] == 'cliente') {
-				$this->userManager->setResponsable($_POST['username'], $_POST['password'], $_POST['nombre'], $_POST['apellido_paterno'], $_POST['apellido_materno'], $_POST['empresa']);
-				$this->clientes = 'active';
-			}
-			if ($_POST['tipo'] == 'admin') {
-				$this->userManager->setAdmin($_POST['username'], $_POST['password'], $_POST['nombre'], $_POST['apellido_paterno'], $_POST['apellido_materno']);
-				$this->admin = 'active';
-			}
-		}
 	}
 }
 
