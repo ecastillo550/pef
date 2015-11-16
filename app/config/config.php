@@ -2,10 +2,18 @@
 namespace Hagane;
 
 class Config {
+	private $appDir;
+	private $appDepth;
+
+	public function __construct($HaganeInit = array()){
+		$this->appDir = $HaganeInit['appFolderName'];
+		$this->appDepth = $HaganeInit['appFolderDepth'];
+	}
+
 	function getConf() {
 		return
 			array(
-				'appPath' => '../app/',
+				'appPath' => $this->appDepth.$this->appDir.'/',
 				'template' => 'main',
 				'db_engine' => 'mysql',
 				'db_server' => 'localhost',
@@ -22,6 +30,16 @@ class Config {
 	function getModules() {
 		return
 			array();
+	}
+
+	function getRoutes() {
+		// Add custom routes here so you can call them with a simple route name
+		// Use the key of the element in the array as
+		return
+			array(
+				'logout' => 'User/logout',
+				'login' => 'User/index'
+			);
 	}
 }
 ?>

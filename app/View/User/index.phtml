@@ -4,12 +4,12 @@ ya etsas logueado tututruur   shhhoohh
 <?php else: ?>
 <form action="/User/auth" method="post">
 	<md-input-container >
-		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
-		<input name="user" type="text" placeholder="User" ng-required="true">
+		<label>User</label>
+		<input name="user" type="text" ng-required="true">
 	</md-input-container>
 	<md-input-container >
-		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
-		<input name="password" type="password" placeholder="Password" ng-required="true">
+		<label>Password</label>
+		<input name="password" type="password" ng-required="true">
 	</md-input-container>
 	<md-input-container >
 		<md-button type="submit">Entrar</md-button>

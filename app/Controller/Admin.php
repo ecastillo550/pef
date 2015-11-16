@@ -16,10 +16,10 @@ class Admin extends AbstractController{
 	}
 
 	function clientes() {
-		$this->print_template = false;
+		//$this->print_template = false;
 	}
 	function users() {
-		$this->print_template = false;
+		//$this->print_template = false;
 
 	}
 

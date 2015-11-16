@@ -1,1 +1,1 @@
-var app = angular.module('haganeApp', ['ngMaterial', 'ngRoute']);
+var app = angular.module('haganeApp', ['ngMaterial']);

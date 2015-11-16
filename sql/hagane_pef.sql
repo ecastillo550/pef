@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 24-10-2015 a las 23:01:13
+-- Tiempo de generación: 29-10-2015 a las 06:34:03
 -- Versión del servidor: 10.0.17-MariaDB
 -- Versión de PHP: 5.6.14
 
@@ -86,8 +86,8 @@ CREATE TABLE `responsable` (
 --
 
 INSERT INTO `responsable` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `idUser`, `idCliente`) VALUES
-(1, 'Erick', 'Castillo', 'de la Garza', 7, 1),
-(2, 'Rodrigo', 'Cabal', 'jim', 8, 1);
+(1, 'ErickCE', 'Castillo', 'de la Garza', 7, 1),
+(2, 'Rodrigo', 'Cabal', 'jimenez', 8, 1);
 
 -- --------------------------------------------------------
 
@@ -110,9 +110,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `user`, `password`, `sessionid`, `user_type`, `imgPath`) VALUES
 (1, 'erick', 'hola', NULL, 'Administrador', 'userImages/erick2.jpg'),
-(7, 'erickc', 'hola', NULL, 'Cliente', ''),
+(7, 'erickc', '', NULL, 'Cliente', ''),
 (8, 'rodrigo', 'hola', NULL, 'Cliente', ''),
-(5, 'cliente', 'hola', 'lzxssV0IT19HvEFn7CEPM2eUXSWQ1lpPoPx4kOSdkPotO3zq2JA1hvagWCWq', 'Cliente', ''),
+(5, 'cliente', 'hola', 'FpMZpkkfYjzIhnQsKJb8JmXxT3R8Zy0lr17rWWz3Lrj1fRbx8BTsBHZ3ZWn1', 'Cliente', 'userImages/pizza.jpg'),
 (3, 'roberto', 'hola', NULL, 'Administrador', 'userImages/mashiro_enojada.jpg'),
 (4, 'nacho', 'hola', 'HbUSLMhrGoYwkzw4dR8byuALbWEUIVCiaBDrDQXv8R4umUMHRUCHUSzsafeG', 'Administrador', 'userImages/pizza.jpg'),
 (6, 'cliente2', 'hola', NULL, 'Cliente', '');
