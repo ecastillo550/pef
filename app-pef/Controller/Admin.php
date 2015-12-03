@@ -5,7 +5,7 @@ class Admin extends AbstractController{
 
 	function _init() {
 		if (!$this->auth->isAuth()) {
-			 header("Location: /User");
+			 header("Location: ".$this->config['document_root']."User");
 			 die();
 		}
 		include_once($this->config['appPath'].'Model/UserManagement.php');

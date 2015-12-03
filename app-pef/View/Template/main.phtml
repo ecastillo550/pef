@@ -17,7 +17,7 @@
 	<script type="text/javascript" src="js/angularlib/angular.min.js"></script>
 	<script type="text/javascript" src="js/angularlib/angular-animate.min.js"></script>
 	<script type="text/javascript" src="js/angularlib/angular-aria.min.js"></script>
-	<script type="text/javascript" src="js/angularlib/angular-material-1-rc1.min.js"></script>
+	<script type="text/javascript" src="js/angularlib/angular-material-rc-4.js"></script>
 	<script type="text/javascript" src="js/angular/haganeApp.js"></script>
 	<script type="text/javascript" src="js/angular/appConfig.js"></script>
 	<script type="text/javascript" src="js/angular/appMainController.js"></script>
@@ -62,7 +62,7 @@
 						<br><b> <?=$this->user->getNombreCompleto()?> </b>
 						<md-list-item ng-class="{active : isActive('/Cliente/index')}" ng-href="Cliente/index">Inicio</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Cliente/dashboard')}" ng-href="Cliente/dashboard">Dashboard</md-list-item>
-						<md-list-item ng-class="{active : isActive('/Cliente/subir')}" ng-href="Cliente/subir">Subir info</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Cliente/subir')}" ng-href="Cliente/subir">Subir archivo</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Cliente/config')}" ng-href="Cliente/config">Configuración</md-list-item>
 						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="User/logout">Cerrar Sesion</md-list-item>
 				<?php endif; ?>

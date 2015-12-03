@@ -6,7 +6,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 	$scope.usuarioPymeForm = null;
 	$scope.usuarioAdminForm = null;
 
-	$http.post('/Admin/ajaxGetUsuarioAdmin', {})
+	$http.post('Admin/ajaxGetUsuarioAdmin', {})
 	.then(function(response) {
 		$scope.usuariosAdmin = response.data;
 	})
@@ -14,7 +14,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.$parent.loading = null;
 	});
 
-	$http.post('/Admin/ajaxGetUsuarioResponsable', {})
+	$http.post('Admin/ajaxGetUsuarioResponsable', {})
 	.then(function(response) {
 		$scope.usuariosPyme = response.data;
 	})
@@ -26,7 +26,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.usuarioPymeForm = $scope.usuariosPyme[index];
 		$mdDialog.show({
 			controller: DialogController,
-			templateUrl: '../Templates/modificarUsuarioPyme.html',
+			templateUrl: 'Templates/modificarUsuarioPyme.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,
@@ -35,7 +35,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		})
 		.then(function(resp) { //se guarda el cambio
 			if (resp) {
-				$http.post('/Admin/ajaxUpdateUsuarioResponsable', $scope.usuarioPymeForm)
+				$http.post('Admin/ajaxUpdateUsuarioResponsable', $scope.usuarioPymeForm)
 				.then(function(response) {
 					$mdToast.show(
 						$mdToast.simple()
@@ -53,7 +53,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.usuarioAdminForm = $scope.usuariosAdmin[index];
 		$mdDialog.show({
 			controller: DialogController,
-			templateUrl: '../Templates/modificarUsuarioAdmin.html',
+			templateUrl: 'Templates/modificarUsuarioAdmin.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,
@@ -62,7 +62,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		})
 		.then(function(resp) { //se guarda el cambio
 			if (resp) {
-				$http.post('/Admin/ajaxUpdateUsuarioResponsable', $scope.usuarioAdminForm)
+				$http.post('Admin/ajaxUpdateUsuarioResponsable', $scope.usuarioAdminForm)
 				.then(function(response) {
 					$mdToast.show(
 						$mdToast.simple()
@@ -82,7 +82,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 	$scope.$parent.toolbar_title = 'Gestión de clientes';
 	$scope.clienteForm = null;
 
-	$http.post('/Admin/ajaxGetCliente', {})
+	$http.post('Admin/ajaxGetCliente', {})
 	.then(function(response) {
 		$scope.clientes = response.data;
 	})
@@ -94,7 +94,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.clienteForm = $scope.clientes[index];
 		$mdDialog.show({
 			controller: DialogController,
-			templateUrl: '../Templates/modificarCliente.html',
+			templateUrl: 'Templates/modificarCliente.html',
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,
@@ -103,7 +103,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		})
 		.then(function(resp) { //se guarda el cambio
 			if (resp) {
-				$http.post('/Admin/ajaxUpdateUsuarioResponsable', $scope.clienteForm)
+				$http.post('Admin/ajaxUpdateUsuarioResponsable', $scope.clienteForm)
 				.then(function(response) {
 					$mdToast.show(
 						$mdToast.simple()

@@ -1,15 +1,11 @@
-app.controller('ClienteDashboardController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast) {
-	$scope.$parent.loading = 'indeterminate';
+app.controller('appClienteController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast, $sce) {
+	//$scope.$parent.loading = 'indeterminate';
 	$scope.$parent.toolbar_title = 'Dashboard';
 	$scope.message = '';
 
-	$scope.qlik = { "jsonrpc": "2.0", "id": 1, "method": "GetDocList", "handle": -1, "params": [] };
+	$scope.dashboards = [{
+		title: 'ventas' ,
+		content: $sce.trustAsResourceUrl('http://biinqliksense.cloudapp.net/single/?appid=6916355e-28a4-4779-a173-9d2d3ba5c023&sheet=XXraLcN&select=clearall')
+	}];
 
-	$http.post('http://biinqliksense.cloudapp.net', $scope.qlik)
-	.then(function(response) {
-		$scope.message = response.data;
-	})
-	.finally(function() {
-		$scope.$parent.loading = null;
-	});
 });

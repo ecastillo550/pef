@@ -1,4 +1,4 @@
-<section id="pagecontent" layout="row" layout-sm="column" flex ng-controller="AdminClientesController">
+<section id="pagecontent" layout="row" layout-sm="column" flex ng-controller="appClienteController">
 <style type="text/css">
 	.tajetaConfig {
 		width: 100%;
@@ -7,10 +7,16 @@
 <md-card class="tajetaConfig">
 	<img ng-src="{{imagePath}}" class="md-card-image">
 	<md-card-content>
-		<h2 class="md-title">Configuración de cuenta</h2>
-		<p>
-			Información de la cuenta
-		</p>
+		<h2 class="md-title">Configuración de Empresa</h2>
+		<p>Empresa: </p>
+		<p>RFC: </p>
+		<p>Dirección: </p>
+		<p>Código postal: </p>
+
+		<h2 class="md-title">Configuración de Cuenta</h2>
+		<p>Nombre: </p>
+		<p>Apellido paterno: </p>
+		<p>Apellido materno: </p>
 	</md-card-content>
 	<div class="md-actions" layout="row" layout-align="end center">
 		<md-button>Modificar</md-button>

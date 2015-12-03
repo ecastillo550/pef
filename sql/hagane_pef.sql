@@ -1,10 +1,10 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.0.2
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 29-10-2015 a las 06:34:03
--- Versión del servidor: 10.0.17-MariaDB
+-- Tiempo de generación: 03-12-2015 a las 21:16:17
+-- Versión del servidor: 10.1.8-MariaDB
 -- Versión de PHP: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -86,7 +86,7 @@ CREATE TABLE `responsable` (
 --
 
 INSERT INTO `responsable` (`id`, `nombre`, `apellido_paterno`, `apellido_materno`, `idUser`, `idCliente`) VALUES
-(1, 'ErickCE', 'Castillo', 'de la Garza', 7, 1),
+(1, 'Erick', 'Castillo', 'de la Garza', 7, 1),
 (2, 'Rodrigo', 'Cabal', 'jimenez', 8, 1);
 
 -- --------------------------------------------------------
@@ -102,7 +102,7 @@ CREATE TABLE `user` (
   `sessionid` varchar(60) DEFAULT NULL,
   `user_type` enum('Administrador','Cliente','Doctor') NOT NULL,
   `imgPath` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=FIXED;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1 ROW_FORMAT=DYNAMIC;
 
 --
 -- Volcado de datos para la tabla `user`
@@ -112,7 +112,7 @@ INSERT INTO `user` (`id`, `user`, `password`, `sessionid`, `user_type`, `imgPath
 (1, 'erick', 'hola', NULL, 'Administrador', 'userImages/erick2.jpg'),
 (7, 'erickc', '', NULL, 'Cliente', ''),
 (8, 'rodrigo', 'hola', NULL, 'Cliente', ''),
-(5, 'cliente', 'hola', 'FpMZpkkfYjzIhnQsKJb8JmXxT3R8Zy0lr17rWWz3Lrj1fRbx8BTsBHZ3ZWn1', 'Cliente', 'userImages/pizza.jpg'),
+(5, 'cliente', 'hola', 'B9uZyvHjzQ3AEEXwoozrLfNQjIk17g8J1xBbYXzmOiSy4mleWwOLRPsn8nDI', 'Cliente', 'userImages/pizza.jpg'),
 (3, 'roberto', 'hola', NULL, 'Administrador', 'userImages/mashiro_enojada.jpg'),
 (4, 'nacho', 'hola', 'HbUSLMhrGoYwkzw4dR8byuALbWEUIVCiaBDrDQXv8R4umUMHRUCHUSzsafeG', 'Administrador', 'userImages/pizza.jpg'),
 (6, 'cliente2', 'hola', NULL, 'Cliente', '');
