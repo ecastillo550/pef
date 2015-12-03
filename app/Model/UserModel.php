@@ -9,7 +9,6 @@ class User implements UserInterface {
 	private $userType;
 	private $imgPath;
 	private $admon;
-	private $doctor;
 	private $cliente;
 
 	public function __construct(&$auth, &$db) {

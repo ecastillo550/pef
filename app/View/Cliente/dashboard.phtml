@@ -1,1 +1,60 @@
-<iframe src="http://biinqliksense.cloudapp.net/single?appid=d2544272-65d3-4d91-8287-60bbf068b8b2&obj=CaZKwB" width="600" height="600"></iframe>
+
+<script>
+/*global require, alert*/
+/*
+ *
+ * @owner Enter you name here (xxx)
+ */
+/*
+ *    Fill in host and port for Qlik engine
+ */
+// var config = {
+// 	host: 'biinqliksense.cloudapp.net',
+// 	prefix: "/",
+// 	port: window.location.port,
+// 	isSecure: window.location.protocol === "https:"
+// };
+// require.config( {
+// 	baseUrl: ( config.isSecure ? "https://" : "http://" ) + config.host + (config.port ? ":" + config.port: "") + config.prefix + "resources"
+// } );
+
+// require( ["js/qlik"], function ( qlik ) {
+// 	qlik.setOnError( function ( error ) {
+// 		alert( error.message );
+// 	} );
+
+// 	//callbacks -- inserted here --
+// 	//open apps -- inserted here --
+// 	var app = qlik.openApp('d2544272-65d3-4d91-8287-60bbf068b8b2', config);
+
+
+// 	//get objects -- inserted here --
+//   	$('.qvobject').each(function () {
+// 		var qvid = $(this).data("qvid");
+// 		app.getObject(this, qvid);
+// 	});
+
+// 	//create cubes and lists -- inserted here --
+
+// } );
+</script>
+
+<style>
+html,body        {height:100%;}
+.wrapper         {width:80%;height:100%;margin:0 auto;background:#CCC}
+.h_iframe        {position:relative;}
+.h_iframe .ratio {display:block;width:100%;height:auto;}
+.h_iframe iframe {position:absolute;top:0;left:0;width:100%; height:100%;}
+</style>
+
+<section layout="row" layout-sm="column" flex ng-controller="ClienteDashboardController">
+<!-- <div class="qvobject" style="width: 300px; height: 300px;" data-qvid="KVHSYZ"></div> -->
+<div class="wrapper">
+    <div class="h_iframe">
+        <!-- a transparent image is preferable -->
+        <img class="ratio" src="http://placehold.it/16x9"/>
+        <iframe src="http://biinqliksense.cloudapp.net/single/?appid=e62a5a97-2d9c-4fbd-a6c3-4620ef98c8d4&sheet=hDPCQq&select=clearall" style="width: 100%; height: 100%;" frameborder="0" allowfullscreen></iframe>
+    </div>
+</div>
+
+</section>

@@ -21,6 +21,7 @@
 	<script type="text/javascript" src="/js/angular/appConfig.js"></script>
 	<script type="text/javascript" src="/js/angular/appMainController.js"></script>
 	<script type="text/javascript" src="/js/angular/appAdminController.js"></script>
+	<script type="text/javascript" src="/js/angular/appClienteController.js"></script>
 </head>
 <body ng-controller="MainController">
 <style>
@@ -49,23 +50,23 @@
 				if ($this->user->getUserType() == 'Administrador'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
 					<p> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
-						<md-list-item ng-href="/Admin/index">Inicio</md-list-item>
-						<md-list-item ng-href="/Admin/users">Gesti&oacute;n de usuarios</md-list-item>
-						<md-list-item ng-href="/Admin/clientes">Clientes</md-list-item>
-						<md-list-item ng-href="#">Reporte de Clientes</md-list-item>
-						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Admin/index')}" ng-href="/Admin/index">Inicio</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Admin/users')}" ng-href="/Admin/users">Gesti&oacute;n de usuarios</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Admin/clientes')}" ng-href="/Admin/clientes">Clientes</md-list-item>
+						<md-list-item ng-class="{active : isActive('#')}" ng-href="#">Reporte de Clientes</md-list-item>
+						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="/User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
 						<?=$this->user->getUserObject()->getEmpresa()?>
 						<br><b> <?=$this->user->getNombreCompleto()?> </b>
-						<md-list-item ng-href="/Cliente/">Inicio</md-list-item>
-						<md-list-item ng-href="/Cliente/dashboard">Dashboard</md-list-item>
-						<md-list-item ng-href="/Cliente/subir">Subir info</md-list-item>
-						<md-list-item ng-href="/Cliente/config">Configuración</md-list-item>
-						<md-list-item ng-href="/User/logout">Cerrar Sesion</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Cliente/')}" ng-href="/Cliente/">Inicio</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Cliente/dashboard')}" ng-href="/Cliente/dashboard">Dashboard</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Cliente/subir')}" ng-href="/Cliente/subir">Subir info</md-list-item>
+						<md-list-item ng-class="{active : isActive('/Cliente/config')}" ng-href="/Cliente/config">Configuración</md-list-item>
+						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="/User/logout">Cerrar Sesion</md-list-item>
 				<?php endif; ?>
 				<?php else : ?>
-						<md-list-item ng-href="/User" class="md-primary">Login</md-list-item>
+						<md-list-item ng-class="{active : isActive('/User')}" ng-href="/User" class="md-primary">Login</md-list-item>
 				<?php endif; ?>
 			</md-list>
 		</md-content>

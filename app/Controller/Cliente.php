@@ -18,6 +18,7 @@ class Cliente extends AbstractController{
 	}
 
 	function dashboard() {
+
 	}
 
 	function subir() {
