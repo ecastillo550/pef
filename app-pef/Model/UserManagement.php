@@ -37,6 +37,16 @@ class UserManagement {
 		return $users;
 	}
 
+	function getClientUser($id) {
+		$users = $this->db->query('SELECT u.user, u.user_type, r.*, c.nombre as empresa
+			FROM User as u JOIN Responsable as r JOIN Cliente as c
+			WHERE r.idUser = u.id
+			AND r.idCliente = c.id
+			AND u.id = '. $id);
+
+		return $users;
+	}
+
 	function setCliente($data = array()) {
 		$this->db->insert('INSERT INTO Cliente SET nombre=:nombre, rfc=:rfc, calle=:calle, num_exterior=:num_exterior, num_interior=:num_interior,colonia=:colonia,cp=:cp ', $data);
 	}

@@ -8,15 +8,15 @@
 	<img ng-src="{{imagePath}}" class="md-card-image">
 	<md-card-content>
 		<h2 class="md-title">Configuración de Empresa</h2>
-		<p>Empresa: </p>
-		<p>RFC: </p>
-		<p>Dirección: </p>
-		<p>Código postal: </p>
-
+		<p><strong>Empresa:</strong> {{usuarioPyme.empresa}}</p>
+		<p><strong>RFC:</strong> </p>
+		<p><strong>Dirección:</strong> </p>
+		<p><strong>Código postal:</strong> </p>
+		<br>
 		<h2 class="md-title">Configuración de Cuenta</h2>
-		<p>Nombre: </p>
-		<p>Apellido paterno: </p>
-		<p>Apellido materno: </p>
+		<p><strong>Nombre:</strong> {{usuarioPyme.nombre}}</p>
+		<p><strong>Apellido paterno:</strong> {{usuarioPyme.apellido_paterno}}</p>
+		<p><strong>Apellido materno:</strong> {{usuarioPyme.apellido_materno}}</p>
 	</md-card-content>
 	<div class="md-actions" layout="row" layout-align="end center">
 		<md-button>Modificar</md-button>

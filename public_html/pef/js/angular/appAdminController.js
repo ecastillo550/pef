@@ -6,7 +6,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 	$scope.usuarioPymeForm = null;
 	$scope.usuarioAdminForm = null;
 
-	$http.post('Admin/ajaxGetUsuarioAdmin', {})
+	$http.get('Admin/ajaxGetUsuarioAdmin')
 	.then(function(response) {
 		$scope.usuariosAdmin = response.data;
 	})
@@ -14,7 +14,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.$parent.loading = null;
 	});
 
-	$http.post('Admin/ajaxGetUsuarioResponsable', {})
+	$http.get('Admin/ajaxGetUsuarioResponsable')
 	.then(function(response) {
 		$scope.usuariosPyme = response.data;
 	})

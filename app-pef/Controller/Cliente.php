@@ -37,7 +37,9 @@ class Cliente extends AbstractController{
 		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
-		echo json_encode($this->userManager->getClientUsers());
+		if (isset($_GET['id']) && $_GET['id'] != '') {
+			echo json_encode($this->userManager->getClientUser($_GET['id']));
+		}
 	}
 }
 

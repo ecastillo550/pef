@@ -5,7 +5,7 @@ class Cliente {
 	private $empresa;
 	private $RFC;
 	private $responsable;
-	
+
 	function __construct(&$auth, &$db) {
 		$id = $auth->isAuth();
 		if (!empty($id)) {
