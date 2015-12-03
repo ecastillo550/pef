@@ -1,8 +1,8 @@
 <?php if ($this->auth->isAuth()) : ?>
-	<a  href="/User/logout">Logout</a>
+	<a  href="User/logout">Logout</a>
 ya etsas logueado tututruur   shhhoohh
 <?php else: ?>
-<form action="/User/auth" method="post">
+<form action="User/auth" method="post">
 	<md-input-container >
 		<label>User</label>
 		<input name="user" type="text" ng-required="true">
