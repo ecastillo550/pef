@@ -1,9 +1,9 @@
 <?php
 namespace Hagane;
 
-//modulo de autenticación. 
+//modulo de autenticación.
 //Módulo dedicado a proveer una api al trabajo de:
-//mantener sesion por cookies, verificar la sesión, iniciar y detener una sesión. 
+//mantener sesion por cookies, verificar la sesión, iniciar y detener una sesión.
 
 class Authentication {
 	private $db;
@@ -49,7 +49,7 @@ class Authentication {
 	}
 
 	public function getUserObject(){
-		return $this->userObject;
+		return $this->userObject; ///What are thoseeeeeee (vestigio supongo)
 	}
 
 	public function logout(){

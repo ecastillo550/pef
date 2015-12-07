@@ -1,23 +1,5 @@
-<?php if ($this->auth->isAuth()) : ?>
-
-	<?php if ($this->user->getUserType() == 'Doctor'): ?>
-	Usuario autenticado - Bienvenido: Doctor <?=$this->user->getNombreCompleto()?>
-	<?php endif; ?>
-
-	<?php if ($this->user->getUserType() == 'Cliente'): ?>
-	Usuario autenticado - Bienvenido: <?=$this->user->getUserObject()->getResponsable()?>
-	<br> Empresa: <?=$this->user->getUserObject()->getEmpresa()?>
-	<?php endif; ?>
-
-	<?php if ($this->user->getUserType() == 'Administrador'): ?>
-	Usuario autenticado - Bienvenido: Administrador <?=$this->user->getNombreCompleto()?>
-	<?php endif; ?>
-
-
-<br>**Se redirigira a su panel
-<?php else: ?>
 <md-subheader class="md-warn">Usuario y/o Contraseña inválidos</md-subheader>
-<form action="/User/auth" method="post">
+<form action="User/auth" method="post">
 	<md-input-container >
 		<md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
 		<input name="user" type="text" placeholder="User" ng-required="true">
@@ -30,4 +12,3 @@
 		<md-button type="submit">Entrar</md-button>
 	</md-input-container>
 </form>
-<?php endif; ?>

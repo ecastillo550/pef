@@ -15,15 +15,15 @@
 	<title>Biin Solutions</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-	<script type="text/javascript" src="js/angularlib/angular.min.js"></script>
-	<script type="text/javascript" src="js/angularlib/angular-animate.min.js"></script>
-	<script type="text/javascript" src="js/angularlib/angular-aria.min.js"></script>
-	<script type="text/javascript" src="js/angularlib/angular-material-rc-4.js"></script>
-	<script type="text/javascript" src="js/angular/haganeApp.js"></script>
-	<script type="text/javascript" src="js/angular/appConfig.js"></script>
-	<script type="text/javascript" src="js/angular/appMainController.js"></script>
-	<script type="text/javascript" src="js/angular/appAdminController.js"></script>
-	<script type="text/javascript" src="js/angular/appClienteController.js"></script>
+	<?=$this->loadJS('Angular/lib/angular.min.js')?>
+	<?=$this->loadJS('Angular/lib/angular-animate.min.js')?>
+	<?=$this->loadJS('Angular/lib/angular-aria.min.js')?>
+	<?=$this->loadJS('Angular/lib/angular-material-rc-4.js')?>
+	<?=$this->loadJS('Angular/app/haganeApp.js')?>
+	<?=$this->loadJS('Angular/app/Config.js')?>
+	<?=$this->loadJS('Angular/app/MainController.js')?>
+	<?=$this->loadJS('Angular/app/AdminController.js')?>
+	<?=$this->loadJS('Angular/app/ClienteController.js')?>
 </head>
 <body ng-controller="MainController">
 <style>

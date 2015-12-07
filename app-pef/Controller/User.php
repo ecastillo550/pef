@@ -15,11 +15,11 @@ class User extends AbstractController{
 			if ($this->auth->isAuth()) {
 				$this->user = new \Hagane\Model\User($this->auth, $this->db);
 				if ($this->user->getUserType() == 'Administrador') {
-					header("Location: ".$this->config['document_root']."Admin/index");
+					$this->redirect('Admin/index');
 					die();
 				}
 				if ($this->user->getUserType() == 'Cliente') {
-					header("Location: ".$this->config['document_root']."Cliente/index");
+					$this->redirect('Cliente/index');
 					die();
 				}
 			}
