@@ -1,4 +1,4 @@
-<section id="pagecontent" layout="row" layout-sm="column" flex ng-controller="appClienteController">
+<section id="pagecontent" layout="row" layout-sm="column" flex ng-controller="ClienteController">
 <style type="text/css">
 	.tajetaConfig {
 		width: 100%;
@@ -30,6 +30,29 @@
 		<p>
 			Identidad
 		</p>
+		<div>
+			<form  ng-submit="uploadLogo()">
+				<span>Logotipo</span>
+				<div class="col s12 m12 center-align">
+					<div name="profile_path" ngf-select ng-model="clienteFormData.file" accept="image/*">Seleccionar imagen</div>
+				</div>
+				<img class="profile-thumb" ngf-src="clienteFormData.profile_path" ng-hide="clienteFormData.file"/>
+				<div ng-show="clienteFormData.file" ngf-drop ng-model="clienteFormData.file" ngf-pattern="image/*" class="cropArea">
+					<img-crop image="clienteFormData.file | ngfDataUrl" result-image="clienteFormData.croppedDataUrl" ng-init="clienteFormData.croppedDataUrl=''"></img-crop>
+				</div>
+				<div ng-show="clienteFormData.file">
+					<img ng-src="{{clienteFormData.croppedDataUrl}}" />
+				</div>
+			</form>
+		</div>
+		<div>
+			<span>Color primario: </span>
+			<color-picker ng-model="clienteFormData.primaryColor" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-alpha="false"></color-picker>
+		</div>
+		<div>
+			<span>Color secundario: </span>
+			<color-picker ng-model="clienteFormData.secondaryColor" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-alpha="false"></color-picker>
+		</div>
 	</md-card-content>
 </md-card>
 </section>
