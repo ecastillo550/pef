@@ -1,10 +1,11 @@
-app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast, $sce) {
+app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast, $sce, Upload) {
 	//$scope.$parent.loading = 'indeterminate';
 	$scope.$parent.toolbar_title = 'Dashboard';
 	$scope.message = '';
 	$scope.usuarioPyme = null;
-	$clienteFormData = {};
-	$clienteFormData.croppedDataUrl = '';
+	$logoFormData = {};
+	$logoFormData.croppedDataUrl = '';
+	$cargaFormData = {};
 
 	$scope.dashboards = [{
 		title: 'ventas' ,
@@ -17,26 +18,77 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 	})
 	.finally(function() {
 		$scope.$parent.loading = null;
-		$clienteFormData = {};
-		$clienteFormData.croppedDataUrl = '';
+		$logoFormData = {};
+		$logoFormData.croppedDataUrl = '';
 	});
 
-	 $scope.uploadLogo = function () {
-	 	$scope.cropped = $scope.mentorFormData.croppedDataUrl;
-		$scope.mentorFormData.croppedDataUrl = null;
-		var blobFile = Upload.dataUrltoBlob($scope.cropped, $scope.mentorFormData.file.name);
+	$scope.uploadLogo = function () {
+		$scope.cropped = $scope.logoFormData.croppedDataUrl;
+		$scope.logoFormData.croppedDataUrl = null;
+		var blobFile = Upload.dataUrltoBlob($scope.cropped, $scope.logoFormData.file.name);
 
 		Upload.upload({
-			url: '<?=$this->config['document_root']?>Cliente/config',
+			url: '<?=$this->config['document_root']?>Cliente/uploadLogo',
 			method: 'POST',
-			fields: $scope.mentorFormData,
+			fields: $scope.logoFormData,
 			file: blobFile,
 			fileFormDataName: 'profile_path'
 		})
 		.then(function (response) {
-			$scope.result = response.data;
-			$clienteFormData = {};
-			$clienteFormData.croppedDataUrl = '';
+			if (response.data.success == 'true') {
+				$mdToast.show(
+					$mdToast.simple()
+					.position('right')
+					.content('Logo actualizado')
+					.parent(document.querySelector( '#pagecontent' ))
+					.hideDelay(3000)
+				);
+				$scope.result = response.data;
+				$logoFormData = {};
+				$logoFormData.croppedDataUrl = '';
+			}
+		});
+	}
+	$scope.uploadExcel = function () {
+		Upload.upload({
+			url: '<?=$this->config['document_root']?>Cliente/uploadFile',
+			method: 'POST',
+            fields: $scope.cargaFormData,
+			file: $cargaFormData.file
+		})
+		.then(function (response) {
+			if (response.data.success == 'true') {
+				$mdToast.show(
+					$mdToast.simple()
+					.position('right')
+					.content('Archivo recibido')
+					.parent(document.querySelector( '#pagecontent' ))
+					.hideDelay(3000)
+				);
+				$scope.result = response.data;
+				$logoFormData = {};
+				$logoFormData.croppedDataUrl = '';
+			}
+		});
+	}
+
+	$scope.uploadColors = function () {
+		$http({
+			method  : 'POST',
+			url     : '<?=$this->config['document_root']?>Cliente/uploadColors',
+			data    : $scope.usuarioPyme,
+			headers : { 'Content-Type': 'application/x-www-form-urlencoded' }
+		})
+		.then(function(response) {
+			if (response.data.success) {
+				$mdToast.show(
+					$mdToast.simple()
+					.position('right')
+					.content('Colores actualizados')
+					.parent(document.querySelector( '#pagecontent' ))
+					.hideDelay(3000)
+				);
+			}
 		});
 	}
 });

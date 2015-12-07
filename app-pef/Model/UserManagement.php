@@ -38,7 +38,7 @@ class UserManagement {
 	}
 
 	function getClientUser($id) {
-		$users = $this->db->query('SELECT u.user, u.user_type, r.*, c.nombre as empresa
+		$users = $this->db->query('SELECT u.user, u.user_type, r.*, c.nombre as empresa, c.*
 			FROM User as u JOIN Responsable as r JOIN Cliente as c
 			WHERE r.idUser = u.id
 			AND r.idCliente = c.id
@@ -49,6 +49,23 @@ class UserManagement {
 
 	function setCliente($data = array()) {
 		$this->db->insert('INSERT INTO Cliente SET nombre=:nombre, rfc=:rfc, calle=:calle, num_exterior=:num_exterior, num_interior=:num_interior,colonia=:colonia,cp=:cp ', $data);
+	}
+	function setClienteColors($data = array()) {
+		$this->db->query('UPDATE Cliente SET primary_color=:primary_color, secondary_color=:secondary_color WHERE id=:id', $data);
+		$data['success'] = 'true';
+		return $data;
+	}
+
+	function setClienteLogo($data = array()) {
+		$this->db->query('UPDATE Cliente SET profile_path=:profile_path WHERE id=:id', $data);
+		$data['success'] = 'true';
+		return $data;
+	}
+
+	function setClienteFile($data = array()) {
+		$this->db->query('INSERT INTO ClienteFile SET path=:path, idCliente=:idCliente, timestamp=:timestamp', $data);
+		$data['success'] = 'true';
+		return $data;
 	}
 
 	function updateCliente($data = array()) {

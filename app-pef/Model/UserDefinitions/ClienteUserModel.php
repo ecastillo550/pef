@@ -5,6 +5,7 @@ class Cliente {
 	private $empresa;
 	private $RFC;
 	private $responsable;
+	private $logo;
 
 	function __construct(&$auth, &$db) {
 		$id = $auth->isAuth();
@@ -17,6 +18,7 @@ class Cliente {
 			$this->responsable_id = $userArray['RespID'];
 			$this->empresa = $userArray['empresa'];
 			$this->responsable = $userArray['RespNombre'] .' ' . $userArray['Respapp'].' ' . $userArray['Resapm'];
+			$this->logo = $userArray['profile_path'];
 		}
 	}
 
@@ -30,6 +32,10 @@ class Cliente {
 
 	function getRFC() {
 		return $this->RFC;
+	}
+
+	function getLogo() {
+		return $this->logo;
 	}
 }
 

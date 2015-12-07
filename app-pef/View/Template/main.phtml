@@ -17,13 +17,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 	<script type="text/javascript" src="js/tinycolor.min.js"></script>
-	<?=$this->loadJS('Angular/lib/angular.min.js')?>
-	<?=$this->loadJS('Angular/lib/angular-animate.min.js')?>
-	<?=$this->loadJS('Angular/lib/angular-aria.min.js')?>
-	<?=$this->loadJS('Angular/lib/angular-material-rc-4.js')?>
-	<?=$this->loadJS('Angular/lib/angularjs-color-picker.min.js')?>
-	<?=$this->loadJS('Angular/lib/ng-file-upload-all.min.js')?>
-	<?=$this->loadJS('Angular/lib/ng-img-crop.js')?>
+	<script type="text/javascript" src="js/lib/angular.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-animate.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-aria.min.js"></script>
+	<script type="text/javascript" src="js/lib/angular-material-rc-4.js"></script>
+	<script type="text/javascript" src="js/lib/angularjs-color-picker.min.js"></script>
+	<script type="text/javascript" src="js/lib/ng-file-upload-all.min.js"></script>
+	<script type="text/javascript" src="js/lib/ng-img-crop.js"></script>
 	<?=$this->loadJS('Angular/app/haganeApp.js')?>
 	<?=$this->loadJS('Angular/app/Config.js')?>
 	<?=$this->loadJS('Angular/app/MainController.js')?>
@@ -96,7 +96,7 @@ img-crop canvas {
 						<md-list-item ng-class="{active : isActive('#')}" ng-href="#">Reporte de Clientes</md-list-item>
 						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
-					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
+					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getUserObject()->getLogo()); ?>">
 						<?=$this->user->getUserObject()->getEmpresa()?>
 						<br><b> <?=$this->user->getNombreCompleto()?> </b>
 						<md-list-item ng-class="{active : isActive('/Cliente/index')}" ng-href="Cliente/index">Inicio</md-list-item>

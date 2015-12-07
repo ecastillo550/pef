@@ -100,7 +100,7 @@ abstract class AbstractController {
 
 	private function secureImageParse($path){
 		//Number to Content Type
-		$file = $this->config['appPath'].'SecureImages/'.$path;
+		$file = $this->config['appPath'].$path;
 		$ntct = Array( "1" => "image/gif",
 			"2" => "image/jpeg",
 			"3" => "image/png",
