@@ -6,9 +6,12 @@ app.config(function($mdThemingProvider, $sceDelegateProvider) {
 	// .accentPalette('deep-purple');
 <?php
 include_once($this->config['appPath'].'Model/UserManagement.php');
-$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 $id = $this->auth->isAuth();
-$clientArray = $this->userManager->getClientUser($id);
+print_r($id);
+if (isset($id) && $id != '') {
+	$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+	$clientArray = $this->userManager->getClientUser($id);
+}
 ?>
 
 var userPallete = $mdThemingProvider.extendPalette('red', {

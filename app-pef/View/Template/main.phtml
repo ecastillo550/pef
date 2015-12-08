@@ -3,7 +3,11 @@
 <head>
 	<meta charset="UTF-8">
 	<base href="<?= $this->config['document_root']; ?>">
-	<script type="text/javascript">userId = <?=$this->auth->isAuth()?>;</script>
+	<script type="text/javascript">
+	if ('<?=$this->auth->isAuth()?>' != '') {
+		userId = <?=$this->auth->isAuth()?>;
+	};
+	</script>
 	<link type="text/css" rel="stylesheet" href="css/style.css"	media="screen,projection" />
 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
