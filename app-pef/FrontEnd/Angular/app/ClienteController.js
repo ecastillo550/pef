@@ -1,4 +1,4 @@
-app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast, $sce, Upload) {
+app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log, $http, $mdDialog, $mdToast, $sce, Upload, $window) {
 	//$scope.$parent.loading = 'indeterminate';
 	$scope.$parent.toolbar_title = 'Dashboard';
 	$scope.message = '';
@@ -43,9 +43,7 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 					.parent(document.querySelector( '#pagecontent' ))
 					.hideDelay(3000)
 				);
-				$scope.result = response.data;
-				$logoFormData = {};
-				$logoFormData.croppedDataUrl = '';
+				$window.location.reload();
 			}
 		});
 	}
@@ -88,6 +86,7 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 					.parent(document.querySelector( '#pagecontent' ))
 					.hideDelay(3000)
 				);
+			$window.location.reload();
 			}
 		});
 	}

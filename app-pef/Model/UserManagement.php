@@ -13,7 +13,6 @@ class UserManagement {
 			$this->db = $db;
 			$this->auth = $auth;
 		}
-
 	}
 
 	function getUsers() {

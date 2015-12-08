@@ -1,15 +1,52 @@
 app.config(function($mdThemingProvider, $sceDelegateProvider) {
-	$mdThemingProvider.theme('default')
-	.primaryPalette('indigo', {
-		'default': '900'
-	})
-	.accentPalette('deep-purple');
+	// $mdThemingProvider.theme('default')
+	// .primaryPalette('indigo', {
+	// 	'default': '900'
+	// })
+	// .accentPalette('deep-purple');
+<?php
+include_once($this->config['appPath'].'Model/UserManagement.php');
+$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+$clientArray = $this->userManager->getClientUser($this->auth->isAuth())[0];
+?>
 
-	// $sceDelegateProvider.resourceUrlWhitelist([
-	// 	// Allow same origin resource loads.
-	// 	'self',
-	// 	// Allow loading from our assets domain.  Notice the difference between * and **.
-	// 	'http://**',
-	// 	'https://**'
-	// ]);
+var userPallete = $mdThemingProvider.extendPalette('red', {
+	'500': '<?=$clientArray['primary_color']?>'
+});
+var userAccentPallete = $mdThemingProvider.extendPalette('pink', {
+	'A200': '<?=$clientArray['secondary_color']?>'
+});
+$mdThemingProvider.definePalette('userPallete', userPallete);
+$mdThemingProvider.definePalette('userAccentPallete', userAccentPallete);
+
+$mdThemingProvider.theme('default')
+	.primaryPalette('userPallete')
+	.accentPalette('userAccentPallete');
+
+
+	// $mdThemingProvider.definePalette('amazingPaletteName', {
+ //    '50': 'ffebee',
+ //    '100': 'ffcdd2',
+ //    '200': 'ef9a9a',
+ //    '300': 'e57373',
+ //    '400': 'ef5350',
+ //    //'500': 'f44336',
+ //    '500': '<?=$clientArray['primary_color']?>',
+ //    '600': 'e53935',
+ //    '700': 'd32f2f',
+ //    '800': 'c62828',
+ //    '900': 'b71c1c',
+ //    'A100': 'ff8a80',
+ //    'A200': 'ff5252',
+ //    //'A100': '<?=$clientArray['secondary_color']?>',
+ //    'A400': 'ff1744',
+ //    'A700': 'd50000',
+ //    'contrastDefaultColor': 'light',    // whether, by default, text (contrast)
+ //                                        // on this palette should be dark or light
+ //    'contrastDarkColors': ['50', '100', //hues which contrast should be 'dark' by default
+ //     '200', '300', '400', 'A100'],
+ //    'contrastLightColors': undefined    // could also specify this if default was 'dark'
+ //  });
+ //  $mdThemingProvider.theme('default')
+ //    .primaryPalette('amazingPaletteName')
 });
