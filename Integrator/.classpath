@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="C:/talexport/dimcustomerprueba/dimcustomerprueba_0_1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/advancedPersistentLookupLib-1.0.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/aws-java-sdk-1.9.13.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/geronimo-stax-api_1.0_spec-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/httpclient-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/httpcore-4.2.1.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/jackson-annotations-2.3.0.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/jackson-core-2.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/jackson-databind-2.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/jboss-serialization.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/joda-time-2.3.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/poi-3.11-20141221_modified_talend.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/poi-ooxml-3.11-20141221_modified_talend.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/poi-ooxml-schemas-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/poi-scratchpad-3.11-20141221.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/postgresql-8.4-703.jdbc4.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/routines.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/simpleexcel.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/talendcsv.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/trove.jar"/>
+	<classpathentry kind="lib" path="C:/talexport/lib/xmlbeans-2.6.0.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

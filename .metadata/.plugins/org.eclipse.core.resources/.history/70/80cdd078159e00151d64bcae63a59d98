@@ -1,0 +1,14 @@
+package org.talend;
+
+import pefbi.dimcustomerprueba_0_1.dimcustomerprueba;
+
+public class talendLauncher {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		dimcustomerprueba talendJob = new dimcustomerprueba();
+		talendJob.runJob(new String[]{});
+		
+	}
+
+}
