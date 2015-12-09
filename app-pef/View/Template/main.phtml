@@ -126,7 +126,6 @@ md-dialog-actions button {
 						<md-list-item ng-class="{active : isActive('/Admin/index')}" ng-href="Admin/index">Inicio</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Admin/users')}" ng-href="Admin/users">Gesti&oacute;n de usuarios</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Admin/clientes')}" ng-href="Admin/clientes">Clientes</md-list-item>
-						<md-list-item ng-class="{active : isActive('#')}" ng-href="#">Reporte de Clientes</md-list-item>
 						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getUserObject()->getLogo()); ?>">
