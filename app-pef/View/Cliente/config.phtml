@@ -34,7 +34,7 @@
 			<form >
 				<span>Logotipo</span>
 				<div class="col s12 m12 center-align">
-					<md-button md-no-ink class="md-primary md-raised" ngf-select ng-model="logoFormData.file" accept="image/*">Seleccionar imagen</md-button>
+					<md-button class="md-primary md-raised" ngf-select ng-model="logoFormData.file" accept="image/*">Seleccionar imagen</md-button>
 				</div>
 				<img class="profile-thumb" ngf-src="logoFormData.profile_path" ng-hide="logoFormData.file"/>
 				<div ng-show="logoFormData.file" ngf-drop ng-model="logoFormData.file" ngf-pattern="image/*" class="cropArea">
@@ -43,7 +43,7 @@
 				<div style="text-align: center;" ng-show="logoFormData.file">
 					<img style="border-radius: 50%; margin: 0 auto;" ng-src="{{logoFormData.croppedDataUrl}}" />
 				</div>
-				<md-button md-no-ink ng-show="logoFormData.file" ng-click="uploadLogo()" class="md-primary md-raised">Cargar Imagen</md-button>
+				<md-button ng-show="logoFormData.file" ng-click="uploadLogo()" class="md-primary md-raised">Cargar Imagen</md-button>
 			</form>
 		</div>
 		<div style="margin-top: 20px;">
@@ -55,7 +55,7 @@
 			<color-picker ng-model="usuarioPyme.secondary_color" color-picker-format="'hex'" color-picker-swatch="true" color-picker-swatch-only="true" color-picker-alpha="false"></color-picker>
 		</div>
 		<br>
-		<md-button md-no-ink ng-click="uploadColors()" class="md-accent md-raised">Cargar Colores</md-button>
+		<md-button ng-click="uploadColors()" class="md-accent md-raised">Cargar Colores</md-button>
 	</md-card-content>
 </md-card>
 </section>

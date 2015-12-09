@@ -8,13 +8,14 @@ class Index extends AbstractController{
 	}
 
 	function index() {
+		$this->redirect('/User');
+		die();
 	}
 
 	function contacto() {
 	}
 
 	function conocenos() {
-
 		//print_r($result);
 	}
 }

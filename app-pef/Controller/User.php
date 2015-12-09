@@ -26,8 +26,13 @@ class User extends AbstractController{
 		}
 	}
 
+	function registro() {
+	}
+
 	function logout() {
 		$this->auth->logout();
+		$this->redirect('/User');
+		die();
 	}
 }
 

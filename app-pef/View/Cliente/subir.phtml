@@ -13,11 +13,21 @@
 		</p>
 		<div>
 			<form >
-				<span>Logotipo</span>
 				<div class="col s12 m12 center-align">
-					<md-button md-no-ink class="md-primary md-raised" ngf-select ng-model="cargaFormData.file" accept="application/*">Seleccionar archivo de Excel</md-button>
+					<md-button class="md-primary md-raised" ngf-select ng-model="cargaFormData.file" accept="application/*">Seleccionar archivo de Excel</md-button>
 				</div>
-				<md-button md-no-ink ng-show="cargaFormData.file" ng-click="uploadExcel()" class="md-primary md-raised">Cargar archivo</md-button>
+				<md-list ng-show="cargaFormData.file">
+			      <md-subheader class="md-no-sticky">Archivo</md-subheader>
+			      <md-list-item class="md-3-line">
+			        <md-icon style="margin-top: 32px;" md-font-set="material-icons">description</md-icon>
+			        <div class="md-list-item-text" layout="column">
+			          <h3>{{cargaFormData.file.name}}</h3>
+			          <h4>{{cargaFormData.file.size/1024 | number:1}} KB</h4>
+			        </div>
+			      </md-list-item>
+			    </md-list>
+				<br>
+				<md-button ng-show="cargaFormData.file" ng-click="uploadExcel()" class="md-primary md-raised">Cargar</md-button>
 			</form>
 		</div>
 	</md-card-content>

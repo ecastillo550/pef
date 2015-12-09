@@ -93,6 +93,10 @@ img-crop canvas {
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
   /* mobile webkit */
 }
+.tajetaConfig {
+	width: 100%;
+	max-width: 850px;
+}
 </style>
 <section layout="row" flex>
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
@@ -105,7 +109,8 @@ img-crop canvas {
 				$obj= $this->user->getUserObject();
 				if ($this->user->getUserType() == 'Administrador'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getImgPath()); ?>">
-					<p> Administrador <br><br> <?=$this->user->getNombreCompleto()?> </p>
+					<p style="text-align: center;"> Administrador </p>
+					<p style="text-align: center;"><b> <?=$this->user->getNombreCompleto()?> </b></p>
 						<md-list-item ng-class="{active : isActive('/Admin/index')}" ng-href="Admin/index">Inicio</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Admin/users')}" ng-href="Admin/users">Gesti&oacute;n de usuarios</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Admin/clientes')}" ng-href="Admin/clientes">Clientes</md-list-item>
@@ -113,8 +118,8 @@ img-crop canvas {
 						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="User/logout">Cerrar Sesion</md-list-item>
 				<?php elseif ($this->user->getUserType() == 'Cliente'): ?>
 					<img class="img-sidebar" src="<?=$this->getSecureImage($this->user->getUserObject()->getLogo()); ?>">
-						<?=$this->user->getUserObject()->getEmpresa()?>
-						<br><b> <?=$this->user->getNombreCompleto()?> </b>
+						<p style="text-align: center;"><b><?=$this->user->getUserObject()->getEmpresa()?></b></p>
+						<p style="text-align: center;"><b> <?=$this->user->getNombreCompleto()?> </b></p>
 						<md-list-item ng-class="{active : isActive('/Cliente/index')}" ng-href="Cliente/index">Inicio</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Cliente/dashboard')}" ng-href="Cliente/dashboard">Dashboard</md-list-item>
 						<md-list-item ng-class="{active : isActive('/Cliente/subir')}" ng-href="Cliente/subir">Subir archivo</md-list-item>
@@ -122,6 +127,9 @@ img-crop canvas {
 						<md-list-item ng-class="{active : isActive('/User/logout')}" ng-href="User/logout">Cerrar Sesion</md-list-item>
 				<?php endif; ?>
 				<?php else : ?>
+						<img class="img-sidebar" src="img/logobiin.png">
+						<br>
+						<br>
 						<md-list-item ng-class="{active : isActive('/User')}" ng-href="User" class="md-primary">Login</md-list-item>
 				<?php endif; ?>
 			</md-list>
@@ -154,17 +162,18 @@ img-crop canvas {
 </section>
 	<md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right">
 		<md-toolbar class="md-accent">
-			<h1 class="md-toolbar-tools">Menu contextual</h1>
+			<h1 class="md-toolbar-tools">Pide ayuda a Biin</h1>
 		</md-toolbar>
 		<md-content ng-controller="RightCtrl" layout-padding>
+			<p>Nos pondremos en contacto contigo.</p>
 			<form>
 				<md-input-container>
-					<label for="testInput">Test input</label>
+					<label for="testInput">Mensaje</label>
 					<input type="text" id="testInput" ng-model="data" md-autofocus>
 				</md-input-container>
 			</form>
 			<md-button ng-click="close()" class="md-primary">
-				Close Sidenav Right
+				Cerrar
 			</md-button>
 		</md-content>
 	</md-sidenav>
