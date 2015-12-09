@@ -2,7 +2,7 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 	//$scope.$parent.loading = 'indeterminate';
 	$scope.$parent.toolbar_title = 'Dashboard';
 	$scope.message = '';
-	$scope.usuarioPyme = null;
+	$scope.usuarioPyme = {};
 	$logoFormData = {};
 	$logoFormData.croppedDataUrl = '';
 	$cargaFormData = {};
@@ -15,6 +15,8 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 	$http.get('Cliente/ajaxGetUsuarioResponsable?id='+userId)
 	.then(function(response) {
 		$scope.usuarioPyme = response.data[0];
+		$scope.usuarioPymeForm = $scope.usuarioPyme;
+		$scope.clienteForm = $scope.usuarioPyme;
 	})
 	.finally(function() {
 		$scope.$parent.loading = null;
@@ -90,4 +92,56 @@ app.controller('ClienteController', function ($scope, $timeout, $mdSidenav, $log
 			}
 		});
 	}
+
+	$scope.modClienteDialog = function(ev) {
+		$mdDialog.show({
+			controller: DialogController,
+			template: `<?=$this->renderView('AngularModal/modificarCliente.phtml')?>`,
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose:false,
+			scope: $scope,
+			preserveScope: true
+		})
+		.then(function(resp) { //se guarda el cambio
+			if (resp) {
+				$http.post('Admin/ajaxSetCliente', $scope.clienteForm)
+				.then(function(response) {
+					$mdToast.show(
+						$mdToast.simple()
+						.position('right')
+						.content('Guardada empresa')
+						.parent(document.querySelector( '#pagecontent' ))
+						.hideDelay(3000)
+					);
+				});
+			}
+		});
+	};
+
+	$scope.modPymeDialog = function(ev) {
+		$mdDialog.show({
+			controller: DialogController,
+			template: `<?=$this->renderView('AngularModal/modificarUsuarioPyme.phtml')?>`,
+			parent: angular.element(document.body),
+			targetEvent: ev,
+			clickOutsideToClose:false,
+			scope: $scope,
+			preserveScope: true
+		})
+		.then(function(resp) { //se guarda el cambio
+			if (resp) {
+				$http.post('Admin/ajaxUpdateUsuarioResponsable', $scope.usuarioPymeForm)
+				.then(function(response) {
+					$mdToast.show(
+						$mdToast.simple()
+						.position('right')
+						.content('Guardado Usuario Pyme')
+						.parent(document.querySelector( '#pagecontent' ))
+						.hideDelay(3000)
+					);
+				});
+			}
+		});
+	};
 });
