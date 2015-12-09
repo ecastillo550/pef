@@ -35,7 +35,7 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		$scope.usuarioPymeForm = $scope.usuariosPyme[index];
 		$mdDialog.show({
 			controller: DialogController,
-			template: `<?=$this->renderView('AngularModal/modificarUsuarioPyme.phtml')?>`,
+			template: `<?=$this->renderView('AngularModal/modPyme.phtml')?>`,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,

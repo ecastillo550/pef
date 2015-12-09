@@ -28,7 +28,7 @@ class UserManagement {
 	}
 
 	function getClientUsers() {
-		$users = $this->db->query('SELECT u.user, u.user_type, r.*, c.nombre as empresa
+		$users = $this->db->query('SELECT u.user, u.user_type, u.activo, r.*, c.nombre as empresa
 			FROM User as u JOIN Responsable as r JOIN Cliente as c
 			WHERE r.idUser = u.id
 			AND r.idCliente = c.id AND u.activo="y"');
@@ -123,10 +123,11 @@ class UserManagement {
 
 		if (isset($data['password'])) {
 			$userData['password'] = $data['password'];
-			$this->db->query('UPDATE User SET user=:user, password=:password, user_type=:user_type WHERE id=:idUser', $userData);
+			$this->db->query('UPDATE User SET user=:user, password=:password, activo=:activo WHERE id=:idUser', $userData);
 
 		} else {
-			$this->db->query('UPDATE User SET user=:user, user_type=:user_type WHERE id=:idUser', $userData);
+			$userData['activo'] = $data['activo'];
+			$this->db->query('UPDATE User SET user=:user, user_type=:user_type, activo=:activo WHERE id=:idUser', $userData);
 		}
 
 		$responsableData = array(

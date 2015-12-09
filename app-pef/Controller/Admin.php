@@ -84,6 +84,7 @@ class Admin extends AbstractController{
 				'id' => $request->id,
 				'idUser' => $request->idUser,
 				'user' => $request->user,
+				'activo' => $request->activo,
 				'user_type' => 'Cliente',
 				'nombre' => $request->nombre,
 				'apellido_paterno' => $request->apellido_paterno,
