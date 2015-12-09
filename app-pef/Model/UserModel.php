@@ -10,6 +10,7 @@ class User implements UserInterface {
 	private $imgPath;
 	private $admon;
 	private $cliente;
+	private $activo;
 
 	public function __construct(&$auth, &$db) {
 		$id = $auth->isAuth();
@@ -20,6 +21,7 @@ class User implements UserInterface {
 			$this->username = $userArray['user'];
 			$this->userType = $userArray['user_type'];
 			$this->imgPath = $userArray['imgPath'];
+			$this->activo = $userArray['activo'];
 			if ($this->userType == 'Administrador') {
 				$this->admon = new \Hagane\Model\Administrador($auth, $db);
 			} elseif ($this->userType == 'Cliente') {
@@ -34,6 +36,10 @@ class User implements UserInterface {
 
 	public function getUserType() {
 		return $this->userType;
+	}
+
+	public function getActivo() {
+		return $this->activo;
 	}
 
 	public function getImgPath() {
