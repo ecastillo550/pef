@@ -1,2 +1,0 @@
-# sisse
-Desarrollo de SISSE
