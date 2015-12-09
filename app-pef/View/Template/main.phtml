@@ -36,6 +36,18 @@
 </head>
 <body ng-controller="MainController">
 <style>
+<?php
+include_once($this->config['appPath'].'Model/UserManagement.php');
+$id = $this->auth->isAuth();
+if (isset($id) && $id != '') {
+	$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+	$clientArray = $this->userManager->getClientUser($id);
+}
+?>
+md-list-item.active a {
+	background-color: <?=$clientArray[0]['secondary_color']?>;
+	color: #fff;
+}
 .md-button {
 	margin: 0;
 }
@@ -132,7 +144,7 @@ img-crop canvas {
 
 
 	<md-content flex style="padding: 15px;">
-		<div class="loader">
+		<div class="loader"  ng-show="loading">
 			<md-progress-circular md-mode="{{loading}}"></md-progress-circular>
 		</div>
 		<?php echo $this->view; ?>

@@ -86,6 +86,20 @@ class Cliente extends AbstractController{
 			'path' => $target_path,
 			'timestamp' => date_create()->format('Y-m-d H:i:s')
 		);
+
+		$host = "tcp://localhost";
+		$port = 8081;
+		$data = 'leer' . PHP_EOL;  //Adding PHP_EOL was the other part of the solution
+		$errstr = '';
+		$errno = '';
+
+		if ( ($fp = fsockopen($host, $port, $errno, $errstr, 3) ) === FALSE)
+			echo "$errstr ($errno)";
+		else {
+			print 'SUCCESS!<br />';
+			fwrite($fp, $data);
+			fclose($fp);
+		}
 		echo json_encode($this->userManager->setClienteFile($data));
 	}
 

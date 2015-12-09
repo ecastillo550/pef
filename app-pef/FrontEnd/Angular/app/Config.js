@@ -7,7 +7,6 @@ app.config(function($mdThemingProvider, $sceDelegateProvider) {
 <?php
 include_once($this->config['appPath'].'Model/UserManagement.php');
 $id = $this->auth->isAuth();
-print_r($id);
 if (isset($id) && $id != '') {
 	$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 	$clientArray = $this->userManager->getClientUser($id);
