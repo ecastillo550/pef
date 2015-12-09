@@ -1,8 +1,13 @@
 <section id="pagecontent" layout="row" flex ng-controller="AdminClientesController">
-<div ng-cloak class="slider">
-	<md-content>
+<md-card class="tajetaConfig">
+	<img ng-src="{{imagePath}}" class="md-card-image">
+	<md-card-content>
+		<md-input-container>
+			<label>Buscar Cliente</label>
+			<input ng-model="searchCliente" />
+		</md-input-container>
 		<md-list>
-			<md-list-item class="md-3-line" ng-repeat="cliente in clientes">
+			<md-list-item class="md-3-line" ng-repeat="cliente in clientes | filter:searchCliente">
 				<div class="md-list-item-text" layout="column">
 					<h3>{{ cliente.nombre }}</h3>
 					<h4>{{ cliente.rfc }}</h4>
@@ -12,6 +17,7 @@
 				<md-divider ></md-divider>
 			</md-list-item>
 		</md-list>
-	</md-content>
+	</md-card-content>
+</md-card>
 </div>
 </section>

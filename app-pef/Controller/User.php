@@ -57,6 +57,7 @@ class User extends AbstractController{
 			'telefono' => $request->telefono,
 			'cp' => $request->cp,
 			'municipio' => $request->municipio,
+			'email' => $request->email,
 			'user' => $request->user,
 			'password' => $request->password,
 			'nombre' => $request->nombre,

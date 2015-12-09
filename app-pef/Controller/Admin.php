@@ -24,19 +24,27 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxSetCliente() {
+		$postdata = file_get_contents("php://input"); //recibe los datos de angular
+		$request = json_decode($postdata);
+
 		$this->print_template = false;
 		$this->sendJson = true;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			$data = array(
-				'nombre' => $_POST['nombre'],
-				'rfc' => $_POST['rfc'],
-				'calle' => $_POST['calle'],
-				'num_exterior' => $_POST['num_exterior'],
-				'num_interior' => $_POST['num_interior'],
-				'colonia' => $_POST['colonia'],
-				'cp' => $_POST['cp']);
+				'id' => $request->id,
+				'nombre' => $request->nombre,
+				'rfc' => $request->rfc,
+				'calle' => $request->calle,
+				'num_exterior' => $request->num_exterior,
+				'num_interior' => $request->num_interior,
+				'colonia' => $request->colonia,
+				'telefono' => $request->telefono,
+				'email' => $request->email,
+				'cp' => $request->cp,
+				'municipio' => $request->municipio
+			);
 
 				$this->userManager->setCliente($data);
 		}
@@ -99,6 +107,13 @@ class Admin extends AbstractController{
 	}
 
 	function ajaxGetUsuarioAdmin() {
+		$this->sendJson = true;
+		$this->print_template = false;
+		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+		echo json_encode($this->userManager->getAdminUsers());
+	}
+
+	function ajaxGetUsuariosInactivos() {
 		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);

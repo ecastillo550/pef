@@ -9,38 +9,68 @@
 			</md-button>
 		</div>
 	</md-toolbar>
-	<md-dialog-content style="width:800px;height:810px; ">
+	<md-dialog-content style="min-width:800px; min-height:300px; ">
 		<div class="md-dialog-content">
-			<div layout layout-sm="column">
-				<md-input-container style="width:70%;">
-					<md-icon>person</md-icon>
-					<input ng-model="clienteForm.nombre" type="text" placeholder="Nombre" ng-required="true">
-				</md-input-container>
-				<md-input-container style="width:30%;">
-					<label>RFC</label>
-					<input ng-model="clienteForm.rfc" type="text" ng-required="true">
-				</md-input-container>
-			</div>
-			<div layout layout-sm="column">
-				<md-input-container style="width:40%;">
-					<label>Calle</label>
-					<input ng-model="clienteForm.calle" type="text" ng-required="true">
-				</md-input-container>
-				<md-input-container style="width:20%;">
-					<label>Número Exterior</label>
-					<input ng-model="clienteForm.num_exterior" type="text" ng-required="true">
-				</md-input-container>
-				<md-input-container style="width:20%;">
-					<label>Número Interior</label>
-					<input ng-model="clienteForm.num_interior" type="text" ng-required="true">
-				</md-input-container>
-			</div>
-			<div layout layout-sm="column">
-				<md-input-container style="width:100%;">
-					<label>Colonia</label>
-					<input ng-model="clienteForm.colonia" type="text" ng-required="true">
-				</md-input-container>
-			</div>
+			<md-tabs md-selected="selectedIndex" md-dynamic-height>
+				<md-tab label="Identidad">
+					<md-input-container >
+						<label>Nombre de la empresa (Razón social)</label>
+						<input ng-model="clienteForm.nombre" type="text" ng-required="true" flex>
+					</md-input-container>
+					<md-input-container >
+						<label>RFC</label>
+						<input ng-model="clienteForm.rfc" type="text" ng-required="true" flex>
+					</md-input-container>
+					<div layout="row" layout-sm="column">
+						<md-input-container >
+							<label>Teléfono</label>
+							<input ng-model="clienteForm.telefono" type="text" ng-required="true" flex>
+						</md-input-container>
+						<md-input-container >
+							<label>Correo electrónico</label>
+							<input ng-model="clienteForm.email" type="text" ng-required="true" flex>
+						</md-input-container>
+					</div>
+				</md-tab>
+				<md-tab label="Dirección">
+					<md-input-container >
+						<label>Calle</label>
+						<input ng-model="clienteForm.calle" type="text" ng-required="true" flex>
+					</md-input-container>
+					<div layout="row" layout-sm="column">
+						<md-input-container >
+							<label>Número exterior</label>
+							<input ng-model="clienteForm.num_exterior" type="text" ng-required="true" flex>
+						</md-input-container>
+						<md-input-container >
+							<label>Número interior</label>
+							<input ng-model="clienteForm.num_interior" type="text" flex>
+						</md-input-container>
+					</div>
+					<md-input-container >
+						<label>Colonia</label>
+						<input ng-model="clienteForm.colonia" type="text" ng-required="true" flex>
+					</md-input-container>
+					<div layout="row" layout-sm="column">
+						<md-input-container >
+							<label>Municipio/Delegación</label>
+							<input ng-model="clienteForm.municipio" type="text" ng-required="true" flex>
+						</md-input-container>
+						<md-input-container >
+							<label>Estado</label>
+							<md-select ng-model="clienteForm.estado">
+								<md-option ng-repeat="estado in estados" value="{{estado}}">
+								{{estado}}
+								</md-option>
+							</md-select>
+						</md-input-container>
+					</div>
+					<md-input-container >
+						<label>Código Postal</label>
+						<input ng-model="clienteForm.cp" type="text" ng-required="true" flex>
+					</md-input-container>
+				</md-tab>
+			</md-tabs>
 		</div>
 	</md-dialog-content>
 	<div class="md-actions" layout="row">
