@@ -101,6 +101,14 @@ img-crop canvas {
 md-input-container {
 	width: 100%;
 }
+md-dialog md-dialog-content {
+    flex-direction: column;
+    order: 0;
+    overflow: auto;
+}
+md-dialog-actions button {
+	float: right;
+}
 </style>
 <section layout="row" flex>
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
