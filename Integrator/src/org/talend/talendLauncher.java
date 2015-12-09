@@ -28,6 +28,7 @@ public class talendLauncher {
 	        	   System.out.println("Ejecutando Jobs");
 	        	   dimcustomerprueba talendJob = new dimcustomerprueba();
 	        	   talendJob.runJob(new String[]{});
+	        	   System.out.println("Terminado");
 	           }
 	           capitalizedSentence = clientSentence.toUpperCase() + '\n';
 	           //outToClient.writeBytes(capitalizedSentence);

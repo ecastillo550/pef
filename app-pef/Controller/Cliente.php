@@ -89,15 +89,15 @@ class Cliente extends AbstractController{
 
 		$host = "tcp://localhost";
 		$port = 8081;
-		$data = 'leer' . PHP_EOL;  //Adding PHP_EOL was the other part of the solution
+		$JavaData = 'leer' . PHP_EOL;  //Adding PHP_EOL was the other part of the solution
 		$errstr = '';
 		$errno = '';
 
 		if ( ($fp = fsockopen($host, $port, $errno, $errstr, 3) ) === FALSE)
 			echo "$errstr ($errno)";
 		else {
-			print 'SUCCESS!<br />';
-			fwrite($fp, $data);
+			//print 'SUCCESS!<br />';
+			fwrite($fp, $JavaData);
 			fclose($fp);
 		}
 		echo json_encode($this->userManager->setClienteFile($data));
