@@ -3,6 +3,7 @@ namespace Hagane\Controller;
 
 class User extends AbstractController{
 	function _init() {
+		include_once($this->config['appPath'].'Model/registroModel.php');
 		echo $this->db->database_log['error'];
 	}
 
@@ -27,6 +28,33 @@ class User extends AbstractController{
 	}
 
 	function registro() {
+	}
+
+	function ajaxRegistro() {
+		$this->sendJson = true;
+		$this->print_template = false;
+		$postdata = file_get_contents("php://input"); //recibe los datos de angular
+		$request = json_decode($postdata);
+
+		$this->registro = new \Hagane\Model\Registro($this->db);
+
+		$data = array(
+			'nombreEmpresa' => $request->nombreEmpresa,
+			'rfc' => $request->rfc,
+			'calle' => $request->calle,
+			'num_exterior' => $request->num_exterior,
+			'num_interior' => $request->num_interior,
+			'colonia' => $request->colonia,
+			'telefono' => $request->telefono,
+			'cp' => $request->cp,
+			'municipio' => $request->municipio,
+			'user' => $request->user,
+			'password' => $request->password,
+			'nombre' => $request->nombre,
+			'apellido_paterno' => $request->apellido_paterno,
+			'apellido_materno' => $request->apellido_materno
+		);
+		echo json_encode($this->registro->newRegistro($data));
 	}
 
 	function logout() {
