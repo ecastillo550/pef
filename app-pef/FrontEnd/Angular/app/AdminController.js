@@ -86,10 +86,10 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 	};
 
 	$scope.inactivosDialog = function(ev, index) {
-		$scope.usuarioAdminForm = $scope.usuariosInactivos[index];
+		$scope.usuarioInactivo = $scope.usuariosInactivos[index];
 		$mdDialog.show({
 			controller: DialogController,
-			template: `<?=$this->renderView('AngularModal/verUsuarioAdmin.phtml')?>`,
+			template: `<?=$this->renderView('AngularModal/modificarUsuarioPymeAdmin.phtml')?>`,
 			parent: angular.element(document.body),
 			targetEvent: ev,
 			clickOutsideToClose:false,
@@ -98,15 +98,18 @@ app.controller('AdminUserController', function ($scope, $timeout, $mdSidenav, $l
 		})
 		.then(function(resp) { //se guarda el cambio
 			if (resp) {
-				$http.post('Admin/ajaxAcceptUsuarioResponsable', $scope.usuarioAdminForm)
+				$http.post('Admin/ajaxAcceptUsuarioResponsable', $scope.usuarioInactivo)
 				.then(function(response) {
-					$mdToast.show(
-						$mdToast.simple()
-						.position('right')
-						.content('Usuario aceptado')
-						.parent(document.querySelector( '#pagecontent' ))
-						.hideDelay(3000)
-					);
+					if (response.data.success) {
+						$mdToast.show(
+							$mdToast.simple()
+							.position('right')
+							.content('Usuario aceptado')
+							.parent(document.querySelector( '#pagecontent' ))
+							.hideDelay(3000)
+						);
+						$scope.usuariosInactivos.splice(index,1);
+					}
 				});
 			}
 		});

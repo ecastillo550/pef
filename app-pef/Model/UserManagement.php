@@ -36,6 +36,15 @@ class UserManagement {
 		return $users;
 	}
 
+	function getNotActiveClientUsers() {
+		$users = $this->db->query('SELECT u.user, u.user_type, r.id as respId, r.*, c.nombre as empresa
+			FROM User as u JOIN Responsable as r JOIN Cliente as c
+			WHERE r.idUser = u.id
+			AND r.idCliente = c.id AND u.activo="n"');
+
+		return $users;
+	}
+
 	function getClientUser($id) {
 		$users = $this->db->query('SELECT u.user, u.user_type, r.*, c.nombre as empresa, c.*
 			FROM User as u JOIN Responsable as r JOIN Cliente as c
@@ -53,6 +62,25 @@ class UserManagement {
 	}
 	function setClienteColors($data = array()) {
 		$this->db->query('UPDATE Cliente SET primary_color=:primary_color, secondary_color=:secondary_color WHERE id=:id', $data);
+		$data['success'] = 'true';
+		return $data;
+	}
+
+	function setAcceptResp($data = array()) {
+		$datauser = array(
+			'activo' => 'y',
+			'id' => $data['idUser']
+		);
+		$this->db->query('UPDATE User SET activo=:activo WHERE id=:id', $datauser);
+
+		$dataresp = array(
+			'nombre' => $data['nombre'],
+			'apellido_materno' => $data['apellido_materno'],
+			'apellido_paterno' => $data['apellido_paterno'],
+			'id' => $data['respId']
+		);
+		$this->db->query('UPDATE Responsable SET nombre=:nombre,apellido_materno=:apellido_materno, apellido_paterno=:apellido_paterno WHERE id=:id', $dataresp);
+
 		$data['success'] = 'true';
 		return $data;
 	}

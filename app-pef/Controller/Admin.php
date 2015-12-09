@@ -23,6 +23,27 @@ class Admin extends AbstractController{
 
 	}
 
+	function ajaxAcceptUsuarioResponsable() {
+		$postdata = file_get_contents("php://input"); //recibe los datos de angular
+		$request = json_decode($postdata);
+
+		$this->print_template = false;
+		$this->sendJson = true;
+		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
+
+		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$data = array(
+				'idUser' => $request->idUser,
+				'respId' => $request->respId,
+				'nombre' => $request->nombre,
+				'apellido_paterno' => $request->apellido_paterno,
+				'apellido_materno' => $request->apellido_materno
+			);
+
+			echo json_encode($this->userManager->setAcceptResp($data));
+		}
+	}
+
 	function ajaxSetCliente() {
 		$postdata = file_get_contents("php://input"); //recibe los datos de angular
 		$request = json_decode($postdata);
@@ -117,7 +138,7 @@ class Admin extends AbstractController{
 		$this->sendJson = true;
 		$this->print_template = false;
 		$this->userManager = new \Hagane\Model\UserManagement($this->auth, $this->db);
-		echo json_encode($this->userManager->getAdminUsers());
+		echo json_encode($this->userManager->getNotActiveClientUsers());
 	}
 }
 

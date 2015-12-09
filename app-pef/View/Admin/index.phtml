@@ -1,16 +1,15 @@
-<section id="pagecontent" layout="row" flex ng-controller="AdminClientesController">
+<section id="pagecontent" layout="row" flex ng-controller="AdminUserController">
 <md-card class="tajetaConfig">
 	<img ng-src="{{imagePath}}" class="md-card-image">
 	<md-card-content>
 	<h2 class="md-title">Usuarios sin activar</h2>
 		<md-list>
-			<md-list-item class="md-3-line" ng-repeat="cliente in clientes">
+			<md-list-item class="md-3-line" ng-repeat="usuarioInactivo in usuariosInactivos">
 				<div class="md-list-item-text" layout="column">
-					<h3>{{ cliente.nombre }}</h3>
-					<h4>{{ cliente.rfc }}</h4>
-					<p>{{ cliente.calle }} {{ cliente.num_exterior }} {{ cliente.num_interior }} {{ cliente.num_interior }} {{ cliente.cp }}</p>
+					<h3>{{ usuarioInactivo.nombre }} {{ usuarioInactivo.apellido_paterno }} {{ usuarioInactivo.apellido_materno }}</h3>
+					<h4>{{ usuarioInactivo.empresa }}</h4>
 				</div>
-				<md-button class="md-secondary" ng-click="modClienteDialog($event, $index)">Modificar</md-button>
+				<md-button class="md-secondary" ng-click="inactivosDialog($event, $index)">Modificar</md-button>
 				<md-divider ></md-divider>
 			</md-list-item>
 		</md-list>

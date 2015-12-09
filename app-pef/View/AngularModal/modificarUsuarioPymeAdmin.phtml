@@ -1,0 +1,44 @@
+<md-dialog aria-label="Modificación de Usuario PYME"  ng-cloak>
+<form>
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Modificación de Usuario PYME</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="cancel()">
+				<md-icon aria-label="Close dialog">close</md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+	<md-dialog-content style="max-width:800px;max-height:810px;padding: 10px;">
+		<div layout layout-sm="column">
+			<md-input-container flex>
+				<md-icon>person</md-icon>
+				<input ng-model="usuarioInactivo.nombre" placeholder="Nombre" ng-required="true">
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Apellido paterno</label>
+				<input ng-model="usuarioInactivo.apellido_paterno" ng-required="true">
+			</md-input-container>
+
+			<md-input-container flex>
+				<label>Apellido materno</label>
+				<input ng-model="usuarioInactivo.apellido_materno" ng-required="true">
+			</md-input-container>
+			<md-switch ng-model="usuarioInactivo.activo" aria-label="Activo" ng-true-value="'y'" ng-false-value="'n'" class="md-warn">
+				Activo
+			</md-switch>
+		</div>
+	</md-dialog-content>
+	<div class="md-actions" layout="row">
+		<span flex></span>
+		<md-button ng-click="answer(false)" >
+				Cancelar
+		</md-button>
+		<md-button ng-click="answer(true)" style="margin-right:20px;" >
+				Guardar
+		</md-button>
+	</div>
+</form>
+</md-dialog>
+
